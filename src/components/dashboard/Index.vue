@@ -13,14 +13,14 @@
                 </div>
             </div>
 		</div>
-        <siteFooter/>
+        <!-- <siteFooter/> -->
     </div>
 </template>
 
 <script>
 import navHeader from './template/navHeader';
 import sidebar from './template/sidebar';
-import siteFooter from './template/siteFooter';
+// import siteFooter from './template/siteFooter';
 import Loader from './template/loader';
 
 export default {
@@ -28,7 +28,7 @@ export default {
 	components: {
 		navHeader: navHeader,
 		sidebar: sidebar,
-		siteFooter: siteFooter,
+		// siteFooter: siteFooter,
 		loader: Loader,
 	},
 	data() {
@@ -105,5 +105,14 @@ export default {
 
 .router-link-active {
 	border-bottom: 0px !important;
+}
+.bmd-form-group input[type=date]{
+	padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 13px;
 }
 </style>

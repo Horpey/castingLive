@@ -28,7 +28,10 @@
 							<router-link class="nav-link" v-bind:to="'/Howit'">How it works</router-link>
 						</li>
 						<li class="nav-item">
-						<router-link class="nav-link" v-bind:to="'/pricing'">Pricing</router-link>
+						<router-link class="nav-link" v-bind:to="'/pricing'">Subscription</router-link>
+						</li>
+						<li class="nav-item">
+						<router-link class="nav-link" v-bind:to="'/workshop'">Workshop</router-link>
 						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" v-bind:to="'/blog'">Blog</router-link>

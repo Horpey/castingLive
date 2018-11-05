@@ -79,7 +79,7 @@
                         <button type="submit" class="btn btn-ppd wd">
                             <img v-if="formLoading" class="form-loader" src="../../../../assets/images/white-loader.svg"
                                 alt="Loader" />
-                            <span v-if="!formLoading">Save Job</span>
+                            <span v-if="!formLoading">Save Project</span>
                         </button>
                     </div>
                 </form>
@@ -112,7 +112,7 @@
                 hearabout: '',
                 image: '',
                 img: '',
-                siteUrl: "https://cast.i.ng/",
+                siteUrl: "https://api.cast.i.ng/",
             };
         },
         components: {
@@ -191,7 +191,7 @@
 
                     if (result.data.payment_needed) {
 
-                        let paystackUrl = 'https://cast.i.ng/' + result.data.redirect;
+                        let paystackUrl = 'https://api.cast.i.ng/' + result.data.redirect;
 
                         console.log(paystackUrl);
                         window.location.href = paystackUrl;

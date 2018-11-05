@@ -11,7 +11,7 @@
 								<div class="row">
 									<div class="col-lg-7 mx-auto text-white text-center">
 										
-										<h1 class="slider-head">{{slider.title}}</h1>
+										<h1 class="slider-head text-capitalize" style="font-size: 30px;">{{slider.title}}</h1>
 										<h5 class="r-14">{{slider.description}}</h5>
 										
 										<router-link class="r-btn hvr-sweep-to-left btn btn-bb2 mr-2" v-bind:to="'/Registeractor'">I am an Actor</router-link>
@@ -29,27 +29,32 @@
 			</div>
 		</header>
 
-<section class="sec1">
+<section class="sec1 sec-over">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-7 text-left">
-                <h1 class="display-4 slider-head" style="text-align: left;">What makes casting manager so different?</h1>
-                <p>
-                    This premium platform showcases our actors in the most palatable way, and helps them to be seen by
-                    the best producers and
-                    casting directors. Our filtering and sorting system helps the casting directors not to miss that
-                    particular talent
-                    for that particular job.
-                </p>
+		<div id="carouselExampleIndicators7" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators pink-indicator">
+				<li v-for="(chair, index) in chairSlider" :class="{ 'active': index === 0 }" data-target="#carouselExampleIndicators7" :data-slide-to="index"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item min-item" v-for="(chair, index) in chairSlider" :class="{ 'active': index === 0 }">
+					<div class="row">
+			            <div class="col-lg-7 text-left">
+			                <h1 class="display-4 slider-head" style="text-align: left;">{{chair.title}}</h1>
+			                <p>
+			                  	{{chair.description}}
+			                </p>
 
-				<router-link class="btn btn-trans text-white" v-bind:to="'/Register'">Get Started Now</router-link>
-            </div>
-            <div class="col-lg-5 wow slideInRight d-none d-sm-block d-sm-none d-md-block" data-wow-duration="2s"
-                data-wow-offset="10">
-                <img src="../../assets/images/chiar.png" class="img-fluid imgv">
-            </div>
-        </div>
-    </div>
+			                <router-link class="btn btn-trans text-white" v-bind:to="'/Register'">Get Started Now</router-link>
+			            </div>
+			            <div class="col-lg-5 wow slideInRight d-none d-sm-block d-sm-none d-md-block" data-wow-duration="2s"
+			                data-wow-offset="10">
+			                <img :src="chair.image" class="img-fluid imgv">
+			            </div>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 
@@ -62,13 +67,16 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item" v-for="(featured, index) in featuredProjects" :class="{ 'active': index === 0 }">
-					<p>
-						<img class="img-fluid slider-img float-left mr-4 imgcv" :src="siteUrl + featured.project_image" alt="">
-						<h1 class="slider-head text-left">	{{featured.project_title}}</h1>
-
-						<span v-html="featured.project_description"></span>
-					</p>
-					<button type="button" class="btn btn-trans">Read More</button>
+					<div class="row">
+						<div class="col-md-4">
+							<img class="img-fluid slider-img float-left mr-4 imgcv img-responsive" :src="siteUrl + featured.project_image" alt="">
+						</div>
+						<div class="col-md-8">
+							<h1 class="slider-head text-left">	{{featured.project_title}}</h1>
+							<span v-html="featured.project_description"></span>
+							<button type="button" class="btn btn-trans">Read More</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -122,39 +130,20 @@
 
 
 	<section class="sec">
-		<div class="container-fluid p-0">
-			<div class="row no-gutters">
-				<div class="col-lg-6 wow slideInLeft d-none d-sm-block d-sm-none d-md-block" data-wow-duration="2s" data-wow-offset="10">
-					<img src="../../assets/images/board3.png" class="img-fluid">
+		<div class="container p-0">
+			<div class="row">
+				<div class="col-lg-4 wow slideInLeft d-none d-sm-block d-sm-none d-md-block text-right" data-wow-duration="2s" data-wow-offset="10">
+					<img src="../../assets/images/board3.png" style="margin-top: 37px;" class="img-fluid">
 				</div>
-				<div class="col-lg-6">
-					<div class="wrd r-wrd">
-						<h1 class="col-p slider-head hire-the">Hire the Best Casting Talent</h1>
+				<div class="col-lg-8">
+					<div class="wrd r-wrd" style="padding: 10px 80px 80px 0;">
+						<h1 class="col-p slider-head hire-the text-left">Hire the Best Casting Talent</h1>
 						<!-- <h1>Loading is {{loading}}</h1> -->
 						<ul>
-							<li>
-								<p class="mb-0">
-									<b>UNLIMITED HEADSHOTS UPLOAD</b>
+							<li v-for="listFeat in listfeats">
+								<p style="margin-bottom: 7px; font-size: 18px;">
+									<b>{{listFeat}}</b>
 								</p>
-								<p>Unlimited headshots upload and management.</p>
-							</li>
-							<li>
-								<p class="mb-0">
-									<b>UNLIMITED VIDEO REEL UPLOAD</b>
-								</p>
-								<p>Unlimited video reel upload and management.</p>
-							</li>
-							<li>
-								<p class="mb-0">
-									<b>AGENCY SERVICES FOR EXCEPTIONAL ACTORS</b>
-								</p>
-								<p>Agency services for exceptional actors if needed.</p>
-							</li>
-							<li>
-								<p class="mb-0">
-									<b>FULL SHAREABLE ACTOR’S PORTFOLIO & RESUME</b>
-								</p>
-								<p>Full shareable actor’s portfolio & management.</p>
 							</li>
 						</ul>
 
@@ -205,9 +194,7 @@
 				<div class="col-lg-8 mx-auto text-white text-left">
 					<h1 class="slider-head text-left">What is Casting all about?</h1>
 					<p>
-						We provide a seamless process from audition notices, actor filtering, online video and audio auditions, actors screening
-						and rating, audition scheduling, audition reminders, audition tagging, and history of actors, by project names. Here
-						is the place to be if acting for you is more than a joke.
+						<a class="text-white" href="https://cast.i.ng">www.cast.i.ng</a> is Nigeria’s Premium online end-to-end audition and casting audition platform that answers to the cry of actors and casting directors alike. Born out of the need to replace the crazy audition process that we have in Nigeria today.  We also boast in the ability of our team to represent you as agents or managers. 
 					</p>
 					<button type="button" class="btn btn-trans">
 						<router-link class="text-white" v-bind:to="'/About'">Read More</router-link>
@@ -279,7 +266,18 @@ export default {
 			featuredProjects: {},
 			featuredActors: {},
 			sliderData: {},
-			siteUrl: "https://cast.i.ng/",
+			chairSlider: {},
+			listfeats: ['Unlimited Headshots',
+						'Unlimited Video reels',
+						'Unlimited Audio reels',
+						'Apply for auditions remotely by one click',
+						'Share Online resume/portfolio on your social media',
+						'Send Online resume as PDF (e-Size Cards)',
+						'Email/WhatsApp reminders of your Audition',
+						'Talent Representations - Agency/management', 
+						'Access to monthly Actors workshop',
+						'Access to Quarterly Actors Hangout' ],
+			siteUrl: "https://api.cast.i.ng/",
 			videoUrl: "https://www.youtube.com/embed/"
 		};
 	},
@@ -287,36 +285,8 @@ export default {
 		loader: Loader,
 		styles: Styles,
 	},
-
-	beforeCreate() {
-		this.loading = true;
-		var config = {
-			headers: {'Access-Control-Allow-Origin': '*'}
-		};
-
-
-		axios({ method: "GET", "url": "https://api.cast.i.ng/slider", config }).then(result => {
-			this.loading = false;
-            this.sliderData = result;
-            this.sliderData.list = result.data.list;
-
-        }, error => {
-			this.loading = false;
-            console.error(error);
-        });
-		
-
-        axios({ method: "GET", "url": "https://api.cast.i.ng", config }).then(result => {
-			this.loading = false;
-            this.featuredProjects = result.data.featured_projects;
-            this.featuredActors = result.data.featured_actors
-            this.featuredTesti = result.data.featured_testimonial
-        }, error => {
-			this.loading = false;
-            console.error(error);
-        });
-	},
 	mounted(){
+		this.loadingTxt = true
 		// location.reload(true);
 		if (localStorage.getItem('reloaded')) {
 	        // The page was just reloaded. Clear the value from local storage
@@ -339,9 +309,42 @@ export default {
 				console.log('Page Error');
 			}
 		);
-		// $('.carousel').carousel({
-		// 	interval: 2000
-		// })
+
+		var config = {
+			headers: {'Access-Control-Allow-Origin': '*'}
+		};
+
+
+		axios({ method: "GET", "url": "https://api.cast.i.ng/slider/homepageslider", config }).then(result => {
+			this.loading = false;
+            this.sliderData = result;
+            this.sliderData.list = result.data.list;
+
+        }, error => {
+			this.loading = false;
+            console.error(error);
+        });
+
+        axios({ method: "GET", "url": "https://api.cast.i.ng/slider/chairslider", config }).then(result => {
+			this.loading = false;
+            // this.chairSlider = result;
+            this.chairSlider = result.data.list;
+
+        }, error => {
+			this.loading = false;
+            console.error(error);
+        });
+		
+
+        axios({ method: "GET", "url": "https://api.cast.i.ng", config }).then(result => {
+			this.loading = false;
+            this.featuredProjects = result.data.featured_projects;
+            this.featuredActors = result.data.featured_actors
+            this.featuredTesti = result.data.featured_testimonial
+        }, error => {
+			this.loading = false;
+            console.error(error);
+        });
 	}	
 };
 </script>
@@ -376,5 +379,29 @@ export default {
 }
 .carousel-item {
     border-bottom: 0px!important;
+    background-size: cover!important;
+    background-repeat: no-repeat!important;
+}
+.carousel-item div{
+	background-repeat: no-repeat!important;
+	background-size: cover!important;
+}
+.min-item{
+	max-height: 458px;
+    padding: 100px 0 10px 0;
+    color: #fff;
+    background-color: #e7077d;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.sec-over{
+    overflow-y: hidden;
+    padding-top: 0px!important;
+}
+.pink-indicator{
+	bottom: -3px!important;
+}
+.pink-indicator li{
+	    background-color: white!important;
 }
 </style>

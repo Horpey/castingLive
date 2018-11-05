@@ -69,13 +69,14 @@ export default {
   },
   methods: {
     processFile(event) {
-      form.append('image', event.target.files[0])
+      event.target.files[0]
+      this.image = event.target.files[0];
     },
 
     registerActor () {
 
       let form = new FormData();
-
+      form.append('firstname',this.image );
       form.append('firstname',this.firstname );
       form.append('lastname',this.lastname );
       form.append('username',this.username );

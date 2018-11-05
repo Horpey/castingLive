@@ -16,6 +16,7 @@
                                     <p>
                                         <b class="col-ppd">Number of Applicants</b>:
                                         {{applicantData.data.projectrole.applicants}}</p>
+                                    <router-link v-bind:to="'/project/invitedApplicants/'+applicantData.data.projectrole.id" class="btn btn-filter text-white">Audition Events</router-link>
                                 </div>
                             </div>
                         </div>
@@ -281,13 +282,26 @@
                                     </div>
                                 </form>
                             </div>
+                            <!-- <p><span>{{ filterIDs }}</span></p> -->
 
                             <div class="applicantFilter text-right">
 
+                                <a v-if="applicantChecked" style="margin-bottom: 15px;" class="btn btn-primary btn-filter" v-on:click="redirectCreate"><span class="fa fa-plus"></span> <span>Create Auditions for Results</span></a>
+
+                                <a v-if="applicantChecked" style="margin-bottom: 15px;" class="btn btn-decline" v-on:click="declineApplicant">
+                                    <img v-if="formLoading" class="form-loader" src="../../../../assets/images/white-loader.svg" alt="Loader" />
+                                    <span v-if="!formLoading">Decline</span>
+                                </a>
+                                
+                            </div>
+
+                            <!-- <div class="applicantFilter text-right">
+
                                 <a v-if="createAud" style="margin-bottom: 15px;" class="btn btn-primary btn-filter" v-on:click="redirectCreate"><span class="fa fa-plus"></span> <span>Create Auditions for Results</span></a>
 
-                                <!-- <router-link v-if="createAud" class="btn btn-primary btn-filter" v-bind:to="'/project/createAudition/'+createid" style="margin-bottom: 15px;"><span class="fa fa-plus"></span> <span>Create Auditions for Results</span></router-link> -->
-                            </div>
+                                <a v-if="createAud" style="margin-bottom: 15px;" class="btn btn-decline" v-on:click="declineApplicant"> <span>Decline</span></a>
+
+                            </div> -->
 
                             <!-- Table  -->
                             <div class="mt-4" style="width: 100%;">
@@ -299,8 +313,10 @@
                                             <td>
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input all-check" name=""
-                                                            id="" value="checkedValue">
+                                                        <input v-if="showAllcheck" type="checkbox" class="form-check-input all-check" @click="selectAll" v-model="allSelected">
+
+                                                        <!-- <input v-if="showQuerycheck" type="checkbox" class="form-check-input all-check" @click="queryAll" v-model="querySelected"> -->
+
                                                         <b> All</b>
                                                     </label>
                                                 </div>
@@ -320,8 +336,8 @@
                                             <td>
                                                 <div class="form-check">
                                                     <label class="form-check-label mb-3">
-                                                        <input type="checkbox" class="form-check-input all-checked"
-                                                            name="" id="" value="checkedValue">
+                                                        <input @click="checkforLength" type="checkbox" class="form-check-input all-checked"
+                                                            v-model="filterIDs" :value="applicant.id">
                                                     </label>
                                                 </div>
                                             </td>
@@ -376,7 +392,7 @@
                                                 <div class="form-check">
                                                     <label class="form-check-label mb-3">
                                                         <input type="checkbox" class="form-check-input all-checked"
-                                                            name="" id="" value="checkedValue">
+                                                            v-model="filterIDs" :value="applicant.id">
                                                     </label>
                                                 </div>
                                             </td>
@@ -417,7 +433,7 @@
                                                                     for audio upload</a>
                                                             </li>
                                                             <li>
-                                                                <a v-on:click="decline(applicant.projectrole_user_id)" class="dropdown-item">Decline</a>
+                                                                <a v-on:click="decline(applicant.projectrole_user_id)" class="dropdown-item">Decline </a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -493,6 +509,12 @@ export default {
 	data() {
 		return {
             selected: [],
+            applicantChecked: true,
+            selected: [],
+            allSelected: false,
+            querySelected: false,
+            showAllcheck: true,
+            showQuerycheck: false,
             customers: {
                 striped: true,
                 editable: false,
@@ -633,7 +655,7 @@ export default {
             rating_min_age: '',
             rating_max_age: '',
 
-			siteUrl: 'https://cast.i.ng/',
+			siteUrl: 'https://api.cast.i.ng/',
 			columns: [
 				{
 					label: 'id',
@@ -705,18 +727,6 @@ export default {
 			],
 		};
 	},
-    computed: {
-
-        selectAll: {
-            get: function () {
-                return customers.selected.length == customers.rows.length;
-            },
-            set: function (value) {
-                customers.selected = value ? customers.rows : [];
-            }
-        }
-
-    },
 	components: {
 		loader: Loader,
 		VueStars: VueStars,
@@ -725,6 +735,7 @@ export default {
         paginator
 	},
 	mounted() {
+        this.applicantChecked = false;
 		let roleID = this.$route.params.id;
 
         localStorage.projectRoleID = roleID
@@ -770,6 +781,30 @@ export default {
 		);
 	},
 	methods: {
+        selectAll: function() {
+            this.filterIDs = [];
+
+            if (!this.allSelected) {
+                var filterId = 0;
+
+                for (filterId in this.applicantData.data.list) {
+                    this.filterIDs.push(this.applicantData.data.list[filterId].id);
+                }
+            }
+        },
+        // queryAll: function(){
+            
+        //     this.filterIDs = [];
+
+        //     if (!this.querySelected) {
+        //         var filterId = 0;
+
+        //         for (filterId in this.filterApplicants) {
+        //             this.filterIDs.push(this.filterApplicants[filterId].id);
+        //         }
+        //     }
+
+        // },
         deleteCustomer: function(customer) {
             var result = window.confirm("You are about to delete " + customer.purchasor_name + ". Are you sure?");
             
@@ -838,31 +873,39 @@ export default {
 			);
 		},
 		decline(requestID) {
-			var config = {
-				headers: { 'Access-Control-Allow-Origin': '*' },
-			};
+			let form = new FormData();
+            var acceptID = [];
+            let projectID = JSON.parse(localStorage.getItem('projectRoleID'));
 
-			let userID = JSON.parse(localStorage.getItem('token'));
+            console.log(requestID)
 
-			axios({
-				method: 'GET',
-				url: 'https://api.cast.i.ng/audition/decline/' + userID + '/' + requestID,
-				config,
-			}).then(
-				result => {
-					this.loading = false;
-					this.requestData = result;
-					this.error = result.data.status_msg;
-					this.status = result.data.status;
-				},
-				error => {
-					this.loading = false;
-					console.log('API CALL FAILED');
-					this.error = 'Request Failed';
-					this.status = false;
-					console.error(error);
-				}
-			);
+            acceptID.push(requestID);
+
+            // usersAdd = JSON.stringify(usersAdd);
+
+            console.log(acceptID + "/" + projectID);
+
+            form.append('users', acceptID);
+            form.append('projectrole_id', projectID);
+
+            this.formLoading = true;
+
+            const API_URL = process.env.API_URL || 'https://api.cast.i.ng';
+
+            axios.post(API_URL + '/audition/decline', form).then(
+                result => {
+                    this.formLoading = false;
+
+                    console.log(result.data);
+
+                    this.error = result.data.status_msg;
+                    this.status = result.data.status;   },
+                error => {
+                    this.formLoading = false;
+                    console.error(error);
+                    this.error = 'Failed to Decline Applicant';
+                }
+            );
 		},
 		onRowClick(params) {
 			console.log(params.row);
@@ -881,8 +924,11 @@ export default {
 			// params.selectedRows - all rows that are selected (this page)
 		},
 		queryApplicant() {
+            this.showAllcheck = false;
 			this.defaultTable = false;
+            this.showQuerycheck = true;
 			this.queryTable = true;
+            this.applicantChecked = true;
 
 			this.filterIDs.length = 0;
 
@@ -969,6 +1015,44 @@ export default {
 			// 	}
 			// );
 		},
+        declineApplicant(){
+
+            let form = new FormData();
+
+            var config = {
+                headers: { 'Access-Control-Allow-Origin': '*' },
+            };
+
+            // let userID = JSON.parse(localStorage.getItem('token'));
+            // let userID = this.filterIDs;
+
+            let userID = JSON.stringify(this.filterIDs);
+
+            console.log(userID)
+            let projectID = JSON.parse(localStorage.getItem('projectRoleID'));
+
+            form.append('users', userID);
+            form.append('projectrole_id', projectID);
+
+            this.formLoading = true;
+
+            const API_URL = process.env.API_URL || 'https://api.cast.i.ng';
+
+            axios.post(API_URL + '/audition/decline', form).then(
+                result => {
+                    this.formLoading = false;
+
+                    console.log(result.data);
+
+                    this.error = result.data.status_msg;
+                    this.status = result.data.status;   },
+                error => {
+                    this.formLoading = false;
+                    console.error(error);
+                    this.error = 'Failed to Decline Applicant';
+                }
+            );
+        },
 		filterChange() {
 			if (this.filterSelect == 'rate') {
 				this.showRating = true;
@@ -1008,6 +1092,13 @@ export default {
 			this.rating_state = '';
 			this.rating_language = '';
 		},
+        checkforLength(){
+            if(this.filterIDs.length < -1){
+                this.applicantChecked = false;
+            }else{
+                this.applicantChecked = true;
+            }
+        }
 	},
 };
 </script>
@@ -1069,6 +1160,12 @@ export default {
 	background-color: #e7077d !important;
 	border-color: #e7077d !important;
 }
+.btn-decline{
+    margin-top: 16px;
+    background-color: red !important;
+    border-color: red !important;
+    color: white!important;
+}
 .form-loader {
 	width: 22px;
 }
@@ -1108,5 +1205,10 @@ export default {
     justify-content: space-between;
     display: flex!important;
     width: 100%;
+}
+.btn-invited{
+    background-color: #3f0048;
+    color: white;
+    font-size: 14px;
 }
 </style>

@@ -65,7 +65,7 @@ export default {
             loading: true,
             scheduleData: "",
             token: '',
-            siteUrl: "https://cast.i.ng/",
+            siteUrl: "https://api.cast.i.ng/",
         };
     },
     components: {

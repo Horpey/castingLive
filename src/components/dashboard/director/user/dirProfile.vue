@@ -110,7 +110,7 @@ export default {
 			audioData: '',
 			error: '',
 			filmData: '',
-			siteUrl: 'https://cast.i.ng/',
+			siteUrl: 'https://api.cast.i.ng/',
 		};
 	},
 	components: {

@@ -359,6 +359,8 @@
                         </div>
                     </div>
 
+                    <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{ error }}</div>
+
                     <button type="submit" class="btn btn-ppd wd">
                       <img v-if="formLoading" class="form-loader" src="../../../assets/images/white-loader.svg" alt="Loader" />
                       <span v-if="!formLoading">Save Profile</span>
@@ -521,6 +523,7 @@ export default {
     name: 'editprofile',
     data() {
 		return {
+            formLoading: false,
 			loading: true,
             firstname: '',
             lastname: '',
@@ -553,7 +556,7 @@ export default {
             mentorReason: '',
             error: '',
             delmentError: '',
-            siteUrl: "https://cast.i.ng/",
+            siteUrl: "https://api.cast.i.ng/",
 
 		};
 	},
@@ -670,8 +673,6 @@ export default {
 
             this.formLoading = true;
 
-            this.formLoading = true;
-
               let userID = JSON.parse(localStorage.getItem('token'));
 
               const API_URL = process.env.API_URL || 'https://api.cast.i.ng'
@@ -687,6 +688,7 @@ export default {
                   this.$router.replace(this.$route.query.redirect || '/dashboard/profile');
                   
                   }, error => {
+                    this.formLoading = false;
                       console.error(error);
               });
         },
@@ -696,8 +698,6 @@ export default {
 
             form.append('title',this.filmName );
             form.append('content',this.filmReason );
-
-            this.formLoading = true;
 
             this.formLoading = true;
 
@@ -716,6 +716,7 @@ export default {
                   this.$router.replace(this.$route.query.redirect || '/dashboard/profile');
                   
                   }, error => {
+                    this.formLoading = false;
                       console.error(error);
               });
         },
@@ -742,6 +743,7 @@ export default {
                   this.status = result.data.status;
                   
                   }, error => {
+                    this.formLoading = false;
                       console.error(error);
               });
         },
@@ -787,7 +789,9 @@ export default {
 
               this.formLoading = false;
 
-              this.$router.replace(this.$route.query.redirect || '/dashboard/profile')
+               location.reload();
+
+              // this.$router.replace(this.$route.query.redirect || '/dashboard/profile')
               
               console.log(result.data)
               this.error = result.data.status_msg;
@@ -795,6 +799,9 @@ export default {
               
               }, error => {
                   // () => this.registerFailed()
+                  this.formLoading = false;
+                  this.error = 'Failed to Edit Profile';
+                this.status = result.data.status;
                   console.error(error);
           });
         },

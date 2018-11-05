@@ -409,7 +409,7 @@
                     this.error = result.data.status_msg;
                     this.status = result.data.status;
 
-                    this.$router.replace(this.$route.query.redirect || '/director/profile')
+                    this.$router.replace(this.$route.query.redirect || '/director/projects')
 
                     if (this.status) {
                         // Clear data

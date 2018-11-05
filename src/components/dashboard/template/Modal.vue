@@ -208,7 +208,7 @@
                             </button>
                         </p>
 
-                        <form class="msform mt-2" method="post" action="https://cast.i.ng/saveevent">
+                        <form class="msform mt-2" method="post" action="https://api.cast.i.ng/saveevent">
                             <div class="add-project-group">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -274,7 +274,7 @@
                 error: false,
                 projectRoles: '',
                 projectTypes: '',
-                siteUrl: "https://cast.i.ng/",
+                siteUrl: "https://api.cast.i.ng/",
             };
         },
         methods: {
@@ -312,6 +312,8 @@
 
                 }, error => {
                     console.error(error);
+                    this.formLoading = false;
+                    this.error = 'Failed to Add to Profile';
                 });
             },
 
@@ -358,6 +360,8 @@
 
                 }, error => {
                     console.error(error);
+                    this.formLoading = false;
+                    this.error = 'Failed to Add to Profile';
                 });
 
             }

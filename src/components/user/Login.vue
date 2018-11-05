@@ -24,11 +24,10 @@
                             <img v-if="formLoading" class="form-loader" src="../../assets/images/white-loader.svg" alt="Loader" />
                             <span v-if="!formLoading">Log In</span>
                         </button>
-
-                        Don't have an account?
+                        <span>
+                        Don't have an account?</span>
                         <router-link class="col-pk" v-bind:to="'/register'">Create an account</router-link>
-                        <br>
-                        <router-link class="col-pk" v-bind:to="'/Forgotpassword'">Forgot Password?</router-link>
+                        <router-link class="col-pk" v-bind:to="'/Forgotpassword'" style="display: block;">Forgot Password?</router-link>
                     </form>
                     </div>
                 </div>

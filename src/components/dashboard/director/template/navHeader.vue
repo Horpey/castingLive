@@ -12,7 +12,6 @@
                             <img src="../../../../assets/images/logo-sm.png" alt="" height="50" class="logo-small" />
                             <img src="../../../../assets/images/logo.png" alt="" class="logo-large" />
                         </router-link>
-
                     </div>
                     <!-- End Logo container-->
 
@@ -37,7 +36,7 @@
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#"
                                     role="button" aria-haspopup="false" aria-expanded="false">
                                     <i class="ti-bell noti-icon"></i>
-                                    <span class="badge badge-danger noti-icon-badge">3</span>
+                                    <span class="badge badge-danger noti-icon-badge">{{notificationCount.data.count}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
                                     <!-- item-->
@@ -46,23 +45,22 @@
                                     </div>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-primary"><i class="mdi mdi-account"></i></div>
-                                        <p class="notify-details"><b>New audition application</b><small class="text-muted">Babalola
-                                                just applied for your auditions.</small></p>
-                                    </a>
 
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-success"><i class="mdi mdi-message"></i></div>
-                                        <p class="notify-details"><b>New Message received</b><small class="text-muted">You
-                                                have 87 unread messages</small></p>
-                                    </a>
+                                    <router-link v-bind:to="'/director/dirNotifications'" class="dropdown-item notify-item"
+                                        v-for="notification in notification.data.list" :key="notification">
+                                        <div class="notify-icon bg-primary"><i class="mdi mdi-account"></i></div>
+                                        <p class="notify-details"><b>{{notification.title}}</b><small class="text-muted">{{notification.message}}</small></p>
+                                    </router-link>
+
+
 
                                     <!-- All-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        View All
-                                    </a>
+                                    <router-link v-bind:to="'/director/dirNotifications'" class="dropdown-item notify-item">View
+                                        All
+                                    </router-link>
+                                    <!-- All-->
+                                    <router-link v-bind:to="'/director/dirSettings'" class="dropdown-item notify-item settings"><span class="fa fa-cog"></span>  Notifictions Settings
+                                    </router-link>
 
                                 </div>
                             </li>
@@ -165,7 +163,10 @@ export default {
             loading: true,
             profileData: "",
             token: '',
-            siteUrl: "https://cast.i.ng/",
+            toggled: false,
+            notificationCount: '',
+            notification: '',
+            siteUrl: "https://api.cast.i.ng/",
         };
     },
     mounted(){
@@ -189,9 +190,63 @@ export default {
             console.log('API CALL FAILED');
             console.error(error);
         });
+
+        axios({
+            method: 'GET',
+            url: 'https://api.cast.i.ng/user/notification/count/' + userID,
+            config
+        }).then(
+            result => {
+                this.loading = false;
+                this.notificationCount = result;
+            },
+            error => {
+                this.loading = false;
+                console.log('API CALL FAILED');
+                console.error(error);
+            }
+        );
+
+        axios({
+            method: 'GET',
+            url: 'https://api.cast.i.ng/user/notification/list/' + userID + '?limit=4',
+            config
+        }).then(
+            result => {
+                this.loading = false;
+                this.notification = result;
+            },
+            error => {
+                this.loading = false;
+                console.log('API CALL FAILED');
+                console.error(error);
+            }
+        );
     }
 };
 </script>
 
 <style>
+.settings, .settings:hover{
+    background-color: #3f0048;
+    color: white;
+    font-weight: bold;
+}
+#sidebar-wrapper{
+    left: 0!important;
+}
+.toggleside{
+    margin-left: 0px;
+}
+.sidebar-nav{
+    position: fixed;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    z-index: 99999;
+    height: 100vh;
+    padding: 0;
+    list-style: none;
+    background-color: #3f0048;
+}
 </style>

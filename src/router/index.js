@@ -3,9 +3,11 @@ import Router from 'vue-router';
 import Home from '@/components/pages/home';
 import About from '@/components/pages/about';
 import pricing from '@/components/pages/pricing';
+import workshop from '@/components/pages/workshop';
 import blog from '@/components/pages/blog';
 import Howit from '@/components/pages/Howit';
 import Forgotpassword from '@/components/user/Forgotpassword';
+import ResetPassword from '@/components/user/ResetPassword';
 import Login from '@/components/user/Login';
 import register from '@/components/user/register';
 import Registeractor from '@/components/user/Registeractor';
@@ -41,12 +43,20 @@ import dirHome from '@/components/dashboard/director/pages/dirHome';
 import addProject from '@/components/dashboard/director/pages/addProject';
 import manageAdmin from '@/components/dashboard/director/pages/manageAdmin';
 
+import dirNotifications from '@/components/dashboard/director/pages/dirNotifications';
+import dirSettings from '@/components/dashboard/director/pages/dirSettings';
+
 import details from '@/components/dashboard/director/pages/details';
 import edit from '@/components/dashboard/director/pages/edit';
 
 import addRole from '@/components/dashboard/director/pages/addRole';
 import editRole from '@/components/dashboard/director/pages/editRole';
 import manageRole from '@/components/dashboard/director/pages/manageRole';
+
+
+import invitedApplicants from '@/components/dashboard/director/pages/invitedApplicants';
+import invitedLists from '@/components/dashboard/director/pages/invitedLists';
+
 
 
 
@@ -60,6 +70,9 @@ import editProfile from '@/components/dashboard/director/user/editProfile';
 import applicants from '@/components/dashboard/director/pages/applicants';
 import viewupload from '@/components/dashboard/director/pages/viewupload';
 import createAudition from '@/components/dashboard/director/pages/createAudition';
+import previewVideo from '@/components/dashboard/director/pages/previewVideo';
+
+
 
 
 
@@ -107,6 +120,11 @@ export default new Router({
       component: pricing,
     },
     {
+      path: '/workshop',
+      name: 'workshop',
+      component: workshop,
+    },
+    {
       path: '/blog',
       name: 'blog',
       component: blog,
@@ -127,6 +145,11 @@ export default new Router({
       component: Forgotpassword,
     },
     {
+      path: '/ResetPassword/:id',
+      name: 'ResetPassword',
+      component: ResetPassword,
+    },
+    {
       path: '/Registeractor',
       name: 'Registeractor',
       component: Registeractor,
@@ -142,12 +165,13 @@ export default new Router({
       component: Contact,
     },
     {
-      path: '/blogdetails',
+      path: '/blogdetails/:id',
       name: 'blogdetails',
       component: blogdetails,
     },
     {
       path: '/404',
+      name: 'notFound',
       component: notFound,
     },
     {
@@ -276,6 +300,16 @@ export default new Router({
           name: 'manageAdmin',
           component: manageAdmin,
         },
+        {
+          path: 'dirNotifications',
+          name: 'dirNotifications',
+          component: dirNotifications,
+        },
+        {
+          path: 'dirSettings',
+          name: 'dirSettings',
+          component: dirSettings,
+        },
       ],
     },
     {
@@ -309,6 +343,16 @@ export default new Router({
           component: manageRole,
         },
         {
+          path: 'invitedApplicants/:id',
+          name: 'invitedApplicants',
+          component: invitedApplicants,
+        },
+        {
+          path: 'invitedLists/:id',
+          name: 'invitedLists',
+          component: invitedLists,
+        },
+        {
           path: 'applicants/:id',
           name: 'applicants',
           component: applicants,
@@ -327,7 +371,12 @@ export default new Router({
           path: 'createAudition',
           name: 'createAudition',
           component: createAudition,
-        }
+        },
+        {
+          path: 'previewVideo/:id',
+          name: 'previewVideo',
+          component: previewVideo,
+        },
       ],
     },
   ],

@@ -5,6 +5,12 @@
             <div class="card-body">
 
                 <div>
+                    <p class="cv1">
+                        <b class="col-ppd">My Profile</b>
+
+                        <router-link class="mdb float-right text-white" v-bind:to="'/dashboard/editProfile'">Edit Profile</router-link>
+
+                    </p>
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-md-6">
                             <p class="cv1">
@@ -252,16 +258,16 @@
                             <b class="col-ppd">Social Handles</b>
                         </p>
 
-                        <a :href="profileData.data.social.facebook">
+                        <a target="_blank" :href="profileData.data.social.facebook">
                             <i class="fa fa-2x fa-facebook-square" style="color:#3b5998;"></i>
                         </a>
-                        <a :href="profileData.data.social.twitter">
+                        <a target="_blank" :href="profileData.data.social.twitter">
                             <i class="fa fa-2x fa-twitter-square" style="color:#08a0e9;"></i>
                         </a>
-                        <a :href="profileData.data.social.linkedln">
+                        <a target="_blank" :href="profileData.data.social.linkedln">
                             <i class="fa fa-2x fa-linkedin-square" style="color:#0077b5;"></i>
                         </a>
-                        <a :href="profileData.data.social.instagram">
+                        <a target="_blank" :href="profileData.data.social.instagram">
                             <i class="fa fa-2x fa-instagram" style="color:#da1a42;"></i>
                         </a>
                     </div>
@@ -298,7 +304,7 @@
 
                         <div class="row no-gutters mt-2">
                             <div class="col-md-3 p-1" v-for="photo in photoData.data.list">
-                                <a :href="siteUrl + photo.image" data-fancybox="gallery">
+                                <a target="_blank" :href="siteUrl + photo.image" data-fancybox="gallery">
                                     <img class="rounded mx-auto d-block img-fluid" alt="200x200" :src="siteUrl + photo.image" data-holder-rendered="true" /> 
                                     <a href="#" class="mv"><i class="fa fa-trash-o"></i> Delete</a>
                                 </a>
@@ -388,7 +394,7 @@ export default {
 			eduData: '',
 			error: '',
 			formLoading: '',
-			siteUrl: 'https://cast.i.ng/',
+			siteUrl: 'https://api.cast.i.ng/',
 		};
 	},
 	components: {
@@ -478,6 +484,8 @@ export default {
 					console.log('API CALL FAILED');
 					// this.$router.replace(this.$route.query.redirect || '/dashboard/profile');
 					console.error(error);
+                    this.error = 'Submission Failed';
+                    this.error = 'Failed to Delete';
 				}
 			);
 		},
@@ -500,6 +508,7 @@ export default {
 					console.log('API CALL FAILED');
 					// this.$router.replace(this.$route.query.redirect || '/dashboard/profile');
 					console.error(error);
+                    this.error = 'Failed to Delete';
 				}
 			);
 		},

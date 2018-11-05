@@ -20,116 +20,48 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
-						<div class="blog-section">
+						<div class="blog-section" v-for="blog in blogContent">
 							<div class="row">
 								<div class="col-md-4">
-									
-									<div class="blog-img" :style="{'background': 'url('+ require ('../../assets/images/blog1.jpg') + ')'}"></div>
+									<div class="blog-img" :style="'background-image: url('+ blog.image + ')'"></div>
 								</div>
 								<div class="col-md-8">
-									<h4 class="col-pk slider-head">Picture Perfect set for premiere</h4>
-									<p class="mt-2">
-										A new movie from award-winning filmmaker, Biodun Stephen, Picture Perfect, is set to hit the cinemas nationwide from July.
-										It features Bisola Aiyeola, Mary Remmy Njoku, Bolanle Ninalowo, Ronke Oshodi Oke, and others.Picture Perfect is
-										a blend of comedy, reality and a jot of romance. It tells the story of a fashion designer (Mary Remmy Njoku) ...
-									</p>
+									<h4 class="col-pk slider-head">
+										<router-link class="col-pk" v-bind:to="'/blogdetails/'+blog.id" >{{blog.title}}</router-link>
+									</h4>
+									<div v-html="blog.excerpt" class="mt-2"></div>
 									<p class="blog-dd" style="font-size: 15px;  color: #a9a9a9;">
-										<i class="fa fa-calendar"></i> Sept 16th, 2018 &nbsp;&nbsp;
-										<i class="fa fa-user"></i> Adebola Ogun
+										<i class="fa fa-calendar"></i> {{blog.created | moment().format("DD MMM YYYY")}}
 									</p>
 
-                                    <router-link class="btn btn-ppk btn-sm" v-bind:to="'/blogdetails'">Continue Reading <i class="fa fa-angle-double-right"></i></router-link>
+                                    <router-link class="btn btn-ppk btn-sm" v-bind:to="'/blogdetails/'+blog.id">Continue Reading <i class="fa fa-angle-double-right"></i></router-link>
 
 								</div>
 							</div>
 						</div>
-						<div class="blog-section">
-							<div class="row">
-								<div class="col-md-4">
-									<div class="blog-img" :style="{'background': 'url('+ require ('../../assets/images/blog2.jpg') + ')'}"></div>
-                                    
-								</div>
-								<div class="col-md-8">
-									<h4 class="col-pk slider-head">No better time to be in Nollywood than now</h4>
-									<p class="mt-2">
-										As a kid, I wanted to be an actor," Biodun Stephen said. "I featured in a few projects: Spider and Emerald, both TV series,
-										but it seemed my acting career was having a difficult time getting off. After a while I gave up. I went back to
-										working nine-to-five as a copywriter with Insight Communication, an advertising agency. I also had a stint as a
-										radio ...
-									</p>
-									<p class="blog-dd" style="font-size: 15px;  color: #a9a9a9;">
-										<i class="fa fa-calendar"></i> Sept 16th, 2018 &nbsp;&nbsp;
-										<i class="fa fa-user"></i> Adebola Ogun
-									</p>
-									<router-link class="btn btn-ppk btn-sm" v-bind:to="'/blogdetails'">Continue Reading <i class="fa fa-angle-double-right"></i></router-link>
-								</div>
-							</div>
-						</div>
-
-						<div class="blog-section">
-							<div class="row">
-								<div class="col-md-4">
-									
-									<div class="blog-img" :style="{'background': 'url('+ require ('../../assets/images/blog1.jpg') + ')'}"></div>
-								</div>
-								<div class="col-md-8">
-									<h4 class="col-pk slider-head">No better time to be in Nollywood than now</h4>
-									<p class="mt-2">
-										As a kid, I wanted to be an actor," Biodun Stephen said. "I featured in a few projects: Spider and Emerald, both TV series,
-										but it seemed my acting career was having a difficult time getting off. After a while I gave up. I went back to
-										working nine-to-five as a copywriter with Insight Communication, an advertising agency. I also had a stint ...
-									</p>
-									<p class="blog-dd" style="font-size: 15px;  color: #a9a9a9;">
-										<i class="fa fa-calendar"></i> Sept 16th, 2018 &nbsp;&nbsp;
-										<i class="fa fa-user"></i> Adebola Ogun
-									</p>
-									<router-link class="btn btn-ppk btn-sm" v-bind:to="'/blogdetails'">Continue Reading <i class="fa fa-angle-double-right"></i></router-link>
-								</div>
-							</div>
-						</div>
-
-						<nav aria-label="Page navigation example">
-							<ul class="pagination justify-content-center">
-								<li class="page-item">
-									<a class="page-link" href="#">Previous</a>
-								</li>
-								<li class="page-item">
-									<a class="page-link" href="#">1</a>
-								</li>
-								<li class="page-item">
-									<a class="page-link" href="#">2</a>
-								</li>
-								<li class="page-item">
-									<a class="page-link" href="#">3</a>
-								</li>
-								<li class="page-item">
-									<a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</nav>
 					</div>
 
 
 					<div class="col-lg-4">
 						<h4 class="col-p">Popular Post</h4>
-
+						<hr>
 						<div class="row">
-							<div class="col-lg-12 mb-2">
-								<img src="../../assets/images/blog2.jpg" width="120" height="70" class="rounded float-left mr-2" /> No better time to be in Nollywood than now</br>
-								<i class="fa fa-calendar col-b"></i> Sept 16th, 2018
-								<div class="bline"></div>
-							</div>
-
-							<div class="col-lg-12 mb-2">
-								<img src="../../assets/images/blog1.jpg" width="120" height="70" class="rounded float-left mr-2" /> Picture Perfect set for premiere</br>
-								<i class="fa fa-calendar col-b"></i> Jun 16th, 2018
-								<div class="bline"></div>
-							</div>
-
-							<div class="col-lg-12 mb-2">
-								<img src="../../assets/images/about-video1.jpg" width="120" height="70" class="rounded float-left mr-2" /> Film-making makes me complete</br>
-								<i class="fa fa-calendar col-b"></i> Nov 16th, 2018
-								<div class="bline"></div>
+							<div class="col-lg-12 mb-2" v-for="popularBlog in popularList">
+								<div class="row">
+									<div class="col-md-4">
+										<img :src="popularBlog.image" width="120" height="70" class="rounded float-left mr-2" />
+									</div>
+									<div class="col-md-8">
+										<p style="font-weight: bold; margin: 0px; font-size: 13px;">
+											<router-link class="col-pk" v-bind:to="'/blogdetails/'+popularBlog.id" >{{popularBlog.title}}</router-link>
+										</p>
+										<p style="font-size: 13px; margin: 0px;">
+										<i class="fa fa-calendar col-b"></i>
+										<span>{{popularBlog.created | moment().format("DD MMM YYYY")}}</span>
+										</p>
+									</div>
+								</div>
+								<div class="bline" style="padding-top: 0px;"></div>
 							</div>
 						</div>
 
@@ -148,6 +80,8 @@ export default {
 	name: 'blog',
 	data() {
 		return {
+			blogContent: '',
+			popularList: '',
 			loading: true,
 		};
 	},
@@ -167,6 +101,29 @@ export default {
 				console.log('Page Error');
 			}
 		);
+
+		var config = {
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+        };
+
+		axios({
+            method: 'GET',
+            url: 'https://api.cast.i.ng/getblog',
+            config
+        }).then(
+            result => {
+                this.loading = false;
+                this.blogContent = result.data.blog_list;
+                this.popularList = result.data.popular_list;
+            },
+            error => {
+                this.loading = false;
+                console.log('API CALL FAILED');
+                console.error(error);
+            }
+        );
 	},
 };
 </script>

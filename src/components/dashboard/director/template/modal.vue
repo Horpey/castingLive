@@ -16,7 +16,7 @@
                             </button>
                         </p>
 
-                        <form class="msform mt-2" method="post" action="https://cast.i.ng/fixappointment">
+                        <form class="msform mt-2" method="post" action="https://api.cast.i.ng/fixappointment">
                             <div class="add-project-group">
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -310,7 +310,7 @@ export default {
 			email: '',
 			phone: '',
 			error: false,
-			siteUrl: 'https://cast.i.ng/',
+			siteUrl: 'https://api.cast.i.ng/',
 			perform: '',
 			teamplay: '',
 			interaction: '',

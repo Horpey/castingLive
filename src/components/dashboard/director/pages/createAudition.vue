@@ -53,6 +53,8 @@
                             <form @submit.prevent="submitAudition">
                             <p class="cv1">
                                 <b class="col-ppd">Schedule Date/Time for Applicants</b></p>
+                                <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{ error }}</div>
+
                             <div class="applicants">
                                 <div v-for="(listapplicant, index) in listApplicants" class="msform">
                                     <label class="mb-0"><strong>{{listapplicant.name}}</strong></label>
@@ -126,7 +128,7 @@ export default {
 	},
 	mounted() {
 		this.localIDs = JSON.parse(localStorage.getItem('applicantsID'));
-		console.log(this.localIDs);
+		// console.log(this.localIDs);
 
 		let form = new FormData();
 		form.append('users', this.localIDs);
@@ -134,7 +136,7 @@ export default {
 
 		axios.post(API_URL + '/getusers', form).then(
 			result => {
-				console.log(result.data);
+				// console.log(result.data);
 				this.listApplicants = result.data.list;
 			},
 			error => {
@@ -162,31 +164,31 @@ export default {
 		// }
 
 		this.token = JSON.parse(localStorage.getItem('token'));
-		console.log(this.token);
+		// console.log(this.token);
 
 		this.loading = true;
 
 		axios.get('https://jsonplaceholder.typicode.com/todos/1').then(
 			response => {
 				this.loading = false;
-				console.log('Page Changes');
+				// console.log('Page Changes');
 			},
 			error => {
 				this.loading = false;
-				console.log('Page Error');
+				// console.log('Page Error');
 			}
 		);
 	},
 	methods: {
 		generalDate(event) {
-			console.log(event.target.value);
+			// console.log(event.target.value);
 
 			this.actorDate = event.target.value;
 
 			this.disableTime= false;
 		},
 		generalTime(event) {
-			console.log(event.target.value);
+			// console.log(event.target.value);
 
 			for(var counti = 0; counti < this.listApplicants.length; counti++){
 				this.actorTime[counti] = event.target.value;
@@ -205,7 +207,7 @@ export default {
 			    this.users.push(this.userObj);
 			}
 
-			console.log(this.users);
+			// console.log(this.users);
 
 
 			
@@ -215,9 +217,9 @@ export default {
 		},
 		setPlace(place) {
 			this.place = place;
-			console.log(this.place.geometry.location.lat());
-			console.log(this.place.geometry.location.lng());
-			console.log(this.place.formatted_address);
+			// console.log(this.place.geometry.location.lat());
+			// console.log(this.place.geometry.location.lng());
+			// console.log(this.place.formatted_address);
 
 			this.disableDate= false;
 			this.zoomMap = 13;
@@ -271,7 +273,7 @@ export default {
 				// this.users.push(this.userObj);
 			}
 
-            console.log(this.users);
+            // console.log(this.users);
 
             // let object2 = Object.assign({'id': applyId}, this.userObj);
 
@@ -283,12 +285,12 @@ export default {
 
 			let userString = JSON.stringify(this.users);
 
-			console.log(this.address);
-			console.log(this.latitude);
-			console.log(this.longitude);
-			console.log(this.applicantsDate);
-			console.log(this.applicantsTime);
-			console.log(userString);
+			// console.log(this.address);
+			// console.log(this.latitude);
+			// console.log(this.longitude);
+			// console.log(this.applicantsDate);
+			// console.log(this.applicantsTime);
+			// console.log(userString);
 
 
 			form.append('address', this.address);
@@ -321,6 +323,7 @@ export default {
 				error => {
 					this.formLoading = false;
 					console.error(error);
+					this.error = 'Failed to Create Event';
 				}
 			);
 		},
@@ -385,5 +388,15 @@ export default {
 }
 .form-loader{
     width: 18px;
+}
+.success {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+.danger {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
 }
 </style>

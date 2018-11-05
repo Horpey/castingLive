@@ -6068,6 +6068,10 @@ uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
+v-offline@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/v-offline/-/v-offline-1.0.10.tgz#10ffa36361a900fc010407e403bd088dd260d289"
+
 v-rating@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/v-rating/-/v-rating-1.0.1.tgz#8376d8c2223985b2d4bf662c93bbffa9cb7512c3"

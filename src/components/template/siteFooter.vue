@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <label>
+                <label style="color: white">
                     <router-link class="text-white" v-bind:to="'/Home'">Home</router-link> |
                     <router-link class="text-white" v-bind:to="'/About'">About Us</router-link> |
                     <router-link class="text-white" v-bind:to="'/Blog'">Blog</router-link> |
@@ -69,7 +69,7 @@ export default {
 		return {
 			loading: true,
 			homeData: "",
-			siteUrl: "https://cast.i.ng/",
+			siteUrl: "https://api.cast.i.ng/",
 			videoUrl: "https://www.youtube.com/embed/",
             twitter: '',
             facebook: '',
@@ -86,10 +86,10 @@ export default {
         axios({ method: "GET", "url": "https://api.cast.i.ng", config }).then(result => {
 			this.loading = false;
             this.homeData = result;
-            this.twitter =result.homeData.data.twitter_link;
-            this.facebook =result.homeData.data.facebook_link;
-            this.instagram =result.homeData.data.instagram_link;
-            this.linkedIn =result.homeData.data.linkedin_link;
+            this.twitter =result.data.twitter_link;
+            this.facebook =result.data.facebook_link;
+            this.instagram =result.data.instagram_link;
+            this.linkedIn =result.data.linkedin_link;
 
         }, error => {
 			this.loading = false;

@@ -15,21 +15,39 @@
 						<table class="table table-striped mb-0">
 							<tbody>
 								<tr>
-									<td><b>Project Role</b></td>
-									<td><b>Type</b></td>
-									<td><b>Date Uploaded</b></td>
-									<td><b>Action</b></td>
+									<th><b>Type</b></th>
+									<th><b>Date Uploaded</b></th>
+									<th><b>Media</b></th>
+									<th><b>Action</b></th>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr v-for="upload in uploadData.data.list">
-									<td>{{upload.projectrole_name}}</td>
-									<td>{{upload.type}}</td>
+									<td class="text-capitalize">{{upload.type}}</td>
+									<td>{{upload.date | moment().format("DD MMM YYYY")}}</td>
+									<td>
+										<router-link v-if="upload.type === 'video' || upload.type === 'Video'" v-bind:to="'/project/previewVideo/'+upload.filename">
+		                                    <span class="fa fa-film"></span>
+		                                </router-link>
+
+		                                <router-link v-if="upload.type === 'audio' || upload.type === 'Audio'" v-bind:to="'/project/previewVideo/'+upload.filename">
+		                                    <span class="fa fa-volume-up"></span>
+		                                </router-link>
+									</td>
+									<td>
+										<router-link class="btn btn-xs btn-outline-success" v-bind:to="'/project/previewVideo/'+upload.filename">
+		                                    View
+		                                </router-link>
+										<button class="btn btn-xs btn-outline-warning">Request for Video</button>
+									</td>
+								</tr>
+								<!-- <tr v-for="upload in uploadData.data.list">
+									<td></td>
 									<td>{{upload.date | moment().format("DD MMM YYYY")}}</td>
 									<td>
 										<a :href="upload.media" class="btn btn-outline-success btn-sm" target="_blank">View</a>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -54,7 +72,7 @@
 				roleID: '',
 				link: '',
 				timeForm: '2018-10-03 15:23:44',
-				siteUrl: 'https://cast.i.ng/',
+				siteUrl: 'https://api.cast.i.ng/',
 			};
 		},
 		components: {

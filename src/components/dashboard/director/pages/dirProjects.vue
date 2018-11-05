@@ -24,7 +24,7 @@
 
                                         <div class="dropdown">
                                             <button class="float-right btn btn-ppd btn-sm dropdown-toggle" type="button" data-toggle="dropdown" style="bottom: 40px;">
-                                                Action
+                                                Settings
                                                 <span class="caret"></span>
                                             </button>
                                             <div id="pos">
@@ -32,6 +32,12 @@
                                                     <li>
                                                         <router-link class="dropdown-item" v-bind:to="'/project/edit/'+recent.id">Edit</router-link>
                                                     </li>
+
+                                                    <li>
+
+                                                        <a target="_blank" :href="'https://api.cast.i.ng/recordprovideo/'+ recent.id" class="dropdown-item">Add Video Intro</a>
+                                                    </li>
+
                                                     <li>
 
                                                         <router-link class="dropdown-item" v-bind:to="'/project/manageRole/'+recent.id">Manage
@@ -70,7 +76,7 @@ export default {
             recentProject: "",
             qualifiedData: "",
             token: '',
-            siteUrl: "https://cast.i.ng/",
+            siteUrl: "https://api.cast.i.ng/",
         };
     },
     components: {

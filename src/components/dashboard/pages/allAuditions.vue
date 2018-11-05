@@ -24,7 +24,7 @@
                         <!-- <router-link v-bind:to="'/dashboard/sendVideo'" class="btn btn-ppd border-0">Apply
                                 </router-link> -->
 
-                        <a target="_blank" :href="'https://api.cast.i.ng/recordvideo/'+ allAudition.id" class="btn btn-ppd border-0">Apply</a>
+                        <a target="_blank" :href="'https://api.cast.i.ng/recordvideo/'+ allAudition.projectrole_user_id" class="btn btn-ppd border-0">Apply</a>
                         <!-- <router-link v-bind:to="'/dashboard/sendVideo'" class="btn btn-ppd border-0">Apply
                                 </router-link> -->
                     </p>
@@ -53,7 +53,7 @@
                 token: '',
                 formLoading: false,
                 error: false,
-                siteUrl: 'https://cast.i.ng/',
+                siteUrl: 'https://api.cast.i.ng/',
             };
         },
         components: {

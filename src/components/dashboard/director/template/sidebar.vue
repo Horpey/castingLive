@@ -62,7 +62,7 @@ export default {
 			loading: true,
 			profileData: '',
 			token: '',
-			siteUrl: 'https://cast.i.ng/',
+			siteUrl: 'https://api.cast.i.ng/',
 		};
 	},
 	mounted() {

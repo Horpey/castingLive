@@ -4,6 +4,9 @@
         <div class="card m-b-30">
             <div class="card-body">
                 <h3>{{detailsData.data.project_title}} - Project Roles
+
+                	<a style="margin-left: 10px;" target="_blank" :href="'https://api.cast.i.ng/recordprovideo/'+ projectidd" class="mdb role-add float-right">Add Video Intro</a>
+
                     <router-link class="mdb role-add float-right" v-bind:to="'/project/addRole/'+detailID">Add Role</router-link>
 
                 </h3>
@@ -50,8 +53,9 @@ export default {
 			loading: true,
 			detailsData: '',
 			token: '',
+			projectidd: '',
 			detailID: '',
-			siteUrl: 'https://cast.i.ng/',
+			siteUrl: 'https://api.cast.i.ng/',
 		};
 	},
 	components: {
@@ -59,6 +63,8 @@ export default {
 	},
 	mounted() {
 		let projectID = this.$route.params.id;
+
+		this.projectidd = this.$route.params.id;
 
 		this.detailID = projectID;
 

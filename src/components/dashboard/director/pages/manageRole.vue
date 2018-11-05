@@ -85,7 +85,7 @@
                 token: '',
                 detailsData: '',
                 error: '',
-                siteUrl: "https://cast.i.ng/",
+                siteUrl: "https://api.cast.i.ng/",
             };
         },
         components: {

@@ -10,10 +10,14 @@
 
                     <h3 class="text-center col-p">Forgot Password</h3>
                     <small class="text-center col-pk">RESET YOUR PASSWORD</small>
-                    <form class="msform mt-4" method="post" action="dashboard.html">
-                        <input class="mb-2" type="text" placeholder="Email" />
-                        <button type="submit" class="btn btn-ppd btn-block wd">Reset Password</button>
+                    <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{ error }}</div>
+                    <form class="msform mt-4" @submit.prevent="forgotPassword">
 
+                        <input class="mb-2" v-model="emailAddress" type="text" placeholder="Email" required/>
+                        <button type="submit" class="btn btn-ppd btn-block wd">
+                        	<img v-if="formLoading" class="form-loader" src="../../assets/images/white-loader.svg" alt="Loader" />
+                 	 		<span v-if="!formLoading">Submit</span>
+                        </button>
                         Don't have an account?
                         <router-link class="col-pk" v-bind:to="'/register'">Create an account</router-link>
                     </form>
@@ -38,7 +42,40 @@ export default {
 	data() {
 		return {
 			loading: true,
+			emailAddress: '',
+			formLoading: false,
+			error: false,
 		};
+	},
+	methods: {
+		forgotPassword(){
+
+			let form = new FormData();
+      		form.append('email',this.emailAddress );
+
+      		this.formLoading = true;
+
+      		const API_URL = process.env.API_URL || 'https://api.cast.i.ng'
+
+      		axios.post(API_URL + '/forgotpassword', form).then(result => {
+
+          this.formLoading = false;
+          
+          console.log(result.data)
+          this.error = result.data.status_msg;
+          this.status = result.data.status;
+          if(this.status){
+            // Clear data
+            this.emailAddress = '';
+          }
+
+
+          }, error => {
+              this.formLoading = false;
+              this.error = 'Failed to send Email';
+              console.error(error);
+      });
+		}
 	},
 	mounted() {
 		this.loading = true;
@@ -57,4 +94,17 @@ export default {
 </script>
 
 <style>
+.form-loader{
+    width: 22px;
+}
+.success{
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+.danger{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
 </style>

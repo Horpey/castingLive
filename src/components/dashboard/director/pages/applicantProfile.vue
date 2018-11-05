@@ -215,16 +215,16 @@
                             <b class="col-ppd">Social Handles</b>
                         </p>
 
-                        <a :href="profileData.data.social.facebook">
+                        <a target="_blank" :href="profileData.data.social.facebook">
                             <i class="fa fa-2x fa-facebook-square" style="color:#3b5998;"></i>
                         </a>
-                        <a :href="profileData.data.social.twitter">
+                        <a target="_blank" :href="profileData.data.social.twitter">
                             <i class="fa fa-2x fa-twitter-square" style="color:#08a0e9;"></i>
                         </a>
-                        <a :href="profileData.data.social.linkedln">
+                        <a target="_blank" :href="profileData.data.social.linkedln">
                             <i class="fa fa-2x fa-linkedin-square" style="color:#0077b5;"></i>
                         </a>
-                        <a :href="profileData.data.social.instagram">
+                        <a target="_blank" :href="profileData.data.social.instagram">
                             <i class="fa fa-2x fa-instagram" style="color:#da1a42;"></i>
                         </a>
                     </div>
@@ -343,8 +343,8 @@ export default {
 			error: '',
             currentUrl: '',
 			formLoading: '',
-			siteUrl: 'https://cast.i.ng/',
-            siteUrlshare: 'http://stage.cast.i.ng',
+			siteUrl: 'https://api.cast.i.ng/',
+            siteUrlshare: 'https://cast.i.ng',
 		};
 	},
 	components: {

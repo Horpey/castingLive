@@ -19,28 +19,15 @@
 <section class="sec-1 line r-sec-1">
     <div class="container">
         <div class="row">
-            <div class="col-lg-7 text-left  wow slideInLeft" data-wow-duration="2s" data-wow-offset="10">
-                <h1 class="col-p pt-5 slider-head">About cast.i.ng manager</h1>
-                <p>
-                    We provide a seamless process from audition notices, actor filtering, online video and audio
-                    auditions, actors screening
-                    and rating, audition scheduling, audition reminders, audition tagging, and history of actors, by
-                    project names.
-                    Here is the place to be if acting for you is more than a joke.
-                </p>
-                <p>
-                    This premium platform showcases our actors in the most palatable way, and helps them to be seen by
-                    the best producers and
-                    casting directors. Our filtering and sorting system helps the casting directors not to miss that
-                    particular
-                    talent for that particular job.
-                </p>
-
-                <a href="#" class="btn btn-trans">Get Started Now</a>
+            <div class="col-lg-4 wow slideInRight" data-wow-duration="2s" data-wow-offset="10">
+                <img  src="../../assets/images/castb.png" class="img-fluid text-center pt-3 my-auto"style="width:100%">
             </div>
-            <div class="col-lg-5 wow slideInRight" data-wow-duration="2s" data-wow-offset="10">
-                <img  src="../../assets/images/castb.png" class="img-fluid imgv text-center pt-3 my-auto" width="50%">
+            <div class="col-lg-8 text-left  wow slideInLeft" data-wow-duration="2s" data-wow-offset="10">
+                <h1 class="col-p slider-head text-left">About cast.i.ng manager</h1>
+                <div v-html="aboutData"></div>
+                <router-link class="btn btn-trans" v-bind:to="'/register'">Get Started Now</router-link> 
             </div>
+            
         </div>
     </div>
 </section>
@@ -90,6 +77,7 @@ export default {
 	data() {
 		return {
 			loading: true,
+            aboutData: '',
 		};
 	},
 	components: {
@@ -98,10 +86,20 @@ export default {
 	},
 	mounted() {
 		this.loading = true;
+
+        axios.get('http://api.cast.i.ng/getpage/about-us').then(
+            response => {
+                this.aboutData = response.data.page_content;
+            },
+            error => {
+                this.loading = false;
+                console.log('Page Error');
+            }
+        );
+
 		axios.get('https://jsonplaceholder.typicode.com/todos/1').then(
 			response => {
 				this.loading = false;
-				console.log('Page Changes');
 			},
 			error => {
 				this.loading = false;

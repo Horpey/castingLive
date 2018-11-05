@@ -51,7 +51,7 @@ export default {
 			detailsData: '',
 			token: '',
 			detailID: '',
-			siteUrl: 'https://cast.i.ng/',
+			siteUrl: 'https://api.cast.i.ng/',
 		};
 	},
 	components: {

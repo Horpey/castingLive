@@ -93,7 +93,7 @@
                                         All
                                     </router-link>
                                     <!-- All-->
-                                    <router-link v-bind:to="'/dashboard/settings'" class="dropdown-item notify-item settings"><span class="fa fa-cog"></span>Notifictions Settings
+                                    <router-link v-bind:to="'/dashboard/settings'" class="dropdown-item notify-item settings"><span class="fa fa-cog"></span>  Notifictions Settings
                                     </router-link>
 
                                 </div>
@@ -213,7 +213,7 @@
                 toggled: false,
                 notificationCount: '',
                 notification: '',
-                siteUrl: 'https://cast.i.ng/',
+                siteUrl: 'https://api.cast.i.ng/',
             };
         },
         methods: {

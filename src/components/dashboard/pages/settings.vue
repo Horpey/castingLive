@@ -74,7 +74,7 @@ export default {
 			dashData: '',
 			qualifiedData: '',
 			token: '',
-			siteUrl: 'https://cast.i.ng/',
+			siteUrl: 'https://api.cast.i.ng/',
 		};
 	},
 	components: {

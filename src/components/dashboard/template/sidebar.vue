@@ -64,7 +64,7 @@
                 </p>
 
                 <div class="row no-gutters mt-2">
-                    <div class="col-md-4 p-1" v-for="photo in photoData.data.list">
+                    <div class="col-md-4 p-1" v-for="photo in gallery">
                         <img class="rounded mx-auto d-block img-fluid" alt="200x200" :src="siteUrl + photo.image"
                             data-holder-rendered="true">
                     </div>
@@ -97,7 +97,8 @@
                 photoData: '',
                 bioData: '',
                 token: '',
-                siteUrl: 'https://cast.i.ng/',
+                gallery: '',
+                siteUrl: 'https://api.cast.i.ng/',
             };
         },
         mounted() {
@@ -123,6 +124,7 @@
                 result => {
                     this.loading = false;
                     this.photoData = result;
+                    this.gallery = result.data.headshot_list;
                 },
                 error => {
                     this.loading = false;

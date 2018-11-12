@@ -85,13 +85,13 @@
                             </li>
                             <li class="menu-item list-inline-item">
                                 <!-- Mobile menu toggle-->
-                                <a href="#menu-toggle" id="menu-toggle" class="navbar-toggle nav-link">
+                                <button v-on:click="toggleCla" class="navbar-toggle nav-link">
                                     <div class="lines">
                                         <span></span>
                                         <span></span>
                                         <span></span>
                                     </div>
-                                </a>
+                                </button>
                                 <!-- End mobile menu toggle-->
                             </li>
                         </ul>
@@ -103,6 +103,65 @@
 
                 </div> <!-- end container -->
             </div>
+
+            <div class="sidebar-toggle hidden-desktop">
+                <div class="">
+                    <div class="sidebar-bg" :style="{'background': ' url('+ profileData.data.profile.image + ')' }"></div>
+                    <div class="">
+                        <p style="font-size: 18px; font-weight: bold;" class="text-white text-center">{{profileData.data.profile.firstname}} {{profileData.data.profile.lastname}}</p>
+                        <div class="text-center">
+                            <router-link class="btn-side btn" v-bind:to="'/director/editProfile'">Edit</router-link>
+                            <!-- <router-link class="btn-side btn" v-bind:to="'/director/profile'">View</router-link> -->
+                    </div>
+                    </div>
+                </div>
+                <div class="">
+                    <ul class="side-ul">
+                        <li v-on:click="toggleCla" class="sidebar-list">
+                            <router-link v-bind:to="'/director/home'">Dashboard
+                            </router-link>
+                        </li>
+
+                        <li v-on:click="toggleCla" class="sidebar-list">
+                            <router-link v-bind:to="'/director/projects'">Projects
+                            </router-link>
+                        </li>
+
+
+                        <li v-on:click="toggleCla" class="sidebar-list">
+                            <router-link v-bind:to="'/director/profile'">My Profile
+                            </router-link>
+
+                        </li>
+
+                        <li v-on:click="toggleCla" class="sidebar-list">
+                            <router-link v-bind:to="'/director/schedule'">Auditions
+                            </router-link>
+                        </li>
+
+                        <li v-on:click="toggleCla" class="sidebar-list">
+                            <router-link v-bind:to="'/director/addProject'">Add Project
+                            </router-link>
+                        </li>
+
+                        <li v-on:click="toggleCla" class="sidebar-list">
+                            <router-link v-bind:to="'/director/subAdmin'">Manage Admins
+                            </router-link>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a style="color: white; cursor: pointer" v-on:click="logOut">Logout
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <p class="quick">Access Cast.i.ng quicker: Go to your browser's menu and click "Add to Home screen"</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- end topbar-main -->
 
             <!-- MENU Start -->
@@ -136,6 +195,7 @@
                                     <i class="mdi mdi-cards"></i>Auditions
                                 </router-link>
                             </li>
+                            
                         </ul><!-- End navigation menu -->
 
                     </div> <!-- end #navigation -->
@@ -150,14 +210,6 @@
 import axios from 'axios';
 export default {
     name: 'navHeader',
-    methods: {
-        logOut(){
-            localStorage.removeItem('token');
-            this.$router.push('/home');
-            // this.$router.replace(this.$route.query.redirect || '/about')
-
-        }
-    },
     data(){
         return {
             loading: true,
@@ -166,8 +218,21 @@ export default {
             toggled: false,
             notificationCount: '',
             notification: '',
+            toggleActive: false,
             siteUrl: "https://api.cast.i.ng/",
         };
+    },
+    methods: {
+        logOut(){
+            localStorage.removeItem('token');
+            this.$router.push('/home');
+            // this.$router.replace(this.$route.query.redirect || '/about')
+
+        },
+        toggleCla(){
+            // this.toggleActive = !this.toggleActive;
+            $('.sidebar-toggle').toggleClass( "sidebarToggleActive" );
+        }
     },
     mounted(){
         this.token = JSON.parse(localStorage.getItem('token'));
@@ -249,4 +314,71 @@ export default {
     list-style: none;
     background-color: #3f0048;
 }
+.sidebar-toggle{
+    background: linear-gradient(#e6077c,#690037);
+    height: 100vh;
+    overflow-y: scroll;
+    width: 80%;
+    box-shadow: 5px 0px 8px 0px #0000003d;
+    left: -83%;
+    position: relative;
+    transition: 0.5s all;
+}
+.sidebarToggleActive{
+    left: 0!important;
+}
+.sidebar-bg{
+    border-radius: 400px;
+    width: 150px;
+    margin: 0 auto;
+    height: 150px;
+    background-size: cover!important;
+    background-position: center!important;
+    margin: 32px auto 12px;
+    border: 7px solid #ffffff70;
+}
+.btn-side{
+    background-color: white;
+    padding: 2px 20px;
+    border: white;
+}
+.side-ul{
+    padding-left: 18px;
+    list-style: none;
+    margin: 23px 0px;
+}
+.side-ul li a{
+    font-size: 16px;
+    padding: 13px 34px;
+    display: block;
+    border-top-left-radius: 45px;
+    border-bottom-left-radius: 45px;
+    color: white;  
+}
+.side-ul li a.router-link-active{
+    font-size: 16px;
+    background-color: #ffffff;
+    padding: 13px 34px;
+    display: block;
+    border-top-left-radius: 45px;
+    border-bottom-left-radius: 45px;
+    color: black;
+}
+.quick{
+        color: white;
+    font-size: 14px;
+    margin: 20px 30px;
+    border-top: 1px solid #0000006b;
+    padding: 9px 0px;
+}
+.sidebar-toggle-active{
+
+}
+
+@media (min-width:992px){
+    .hidden-desktop{
+        display:none!important
+    }
+}
+
 </style>

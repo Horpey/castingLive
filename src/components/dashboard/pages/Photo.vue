@@ -108,7 +108,7 @@ export default {
 		axios({ method: 'GET', url: 'https://api.cast.i.ng/myphoto/' + userID, config }).then(
 			result => {
 				this.loading = false;
-				this.photoData = result;
+				// this.photoData = result;
 				this.headshot = result.data.headshot_list;
 				this.scene = result.data.scene_list;
 			},

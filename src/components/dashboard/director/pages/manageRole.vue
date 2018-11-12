@@ -57,6 +57,11 @@
                                                     <router-link class="dropdown-item" v-bind:to="'/project/applicants/'+role.id">Applicants</router-link>
                                                 </li>
                                                 <li>
+
+                                                    <a target="_blank" :href="'https://api.cast.i.ng/recordprovideo/'+ role.id +'?t=r'" class="dropdown-item">Add Video Intro</a>
+
+                                                </li>
+                                                <li>
                                                     <a style="cursor: pointer" v-on:click="deleteRole(role.id)" class="dropdown-item">Delete
                                                         Role</a>
                                                 </li>

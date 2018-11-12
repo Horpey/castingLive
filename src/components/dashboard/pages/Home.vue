@@ -68,6 +68,9 @@
                                     <b class="col-ppd">Role Description</b>: 
                                     <span v-html="applied.description"></span>
                                 </p>
+                                <div class="">
+                                    <button class="btn btn-xs btn-movie"><span class="fa fa-film"></span>Intro Video</button>
+                                </div>
                                 <p class="mb-4">
                                     <b class="col-ppd">Status</b>: 
                                     <span class="badge badge-success">{{applied.status}}</span>
@@ -146,5 +149,12 @@ export default {
 }
 .cv-pad {
 	padding: 10px 16px !important;
+}
+.btn-movie{
+        background-color: #e7077d;
+    color: white;
+}
+.btn-movie span{
+    margin-right: 10px;
 }
 </style>

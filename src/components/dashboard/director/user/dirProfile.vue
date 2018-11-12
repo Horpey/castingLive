@@ -1,6 +1,55 @@
 <template>
     <div>
         <loader v-if="loading"/>
+        <div class="hidden-desktop">
+            <div class="card m-b-30">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="dp" :style="{'background': ' url('+ profileData.data.profile.image + ')' }">
+                                <router-link v-bind:to="'/director/editProfile'" class="edit-p">
+                                    <span class=" fa fa-pencil"></span>
+                                </router-link>
+
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <h4 class="mt-0 header-title">{{profileData.data.profile.firstname}}
+                                {{profileData.data.profile.lastname}}</h4>
+                            <p class="text-muted font-14">
+                            </p>
+                            <div class="limit-div side-limit">{{profileData.data.profile.description}}</div>
+                            <br>
+                            <router-link class="btn btn-ppd btn-sm" v-bind:to="'/director/editProfile'">Edit</router-link>
+                            <router-link class="btn btn-blu btn-sm" v-bind:to="'/director/profile'">View</router-link>
+                        </div>
+                    </div>
+
+
+                    <br>
+
+                    <div class="bline mt-3"></div>
+                    <!-- <h5 class="col-ppd">SHORTCUTS</h5> -->
+
+
+                    <i class="mdi mdi-file-document col-pink mr-2"></i>
+
+                    <router-link v-bind:to="'/director/addProject'">Add Project</router-link>
+
+                    <div class="bline"></div>
+                    <i class="fa fa-user col-pink mr-2"></i>
+
+                    <router-link v-bind:to="'/director/subAdmin'">Manage Admins</router-link>
+
+                    <div class="bline"></div>
+                </div>
+            </div>
+
+            <modal />
+        </div>
+
+
         <div class="card m-b-30">
             <div class="card-body">
                 <p class="cv1">
@@ -211,4 +260,10 @@ export default {
 	background-color: #3f0047 !important;
 	color: white !important;
 }
+@media (min-width:992px){
+    .hidden-desktop{
+        display:none!important
+    }
+}
+
 </style>

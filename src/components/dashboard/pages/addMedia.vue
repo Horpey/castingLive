@@ -227,7 +227,7 @@
                     this.scenesForm.append('files[' + i + ']', event.target.files[i]);
                 }
                 // this.behindScene = event.target.files[0];
-                console.log(this.behindScene)
+                // console.log(this.behindScene)
             },
             processFile(event) {
                 let form = new FormData();

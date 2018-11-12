@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="hidden-small">
         <div class="card m-b-30">
             <div class="card-body">
 
@@ -135,12 +135,15 @@ export default {
 	color: white;
 }
 @media only screen and (max-width: 640px) {
-        .wrapper {
-            padding-top: 96px !important;
-        }
-        .dp{
-                height: 238px !important;
-        margin-bottom: 15px;
-        }
+    .wrapper {
+        padding-top: 96px !important;
     }
+    .dp{
+            height: 238px !important;
+    margin-bottom: 15px;
+    }
+    .hidden-small{
+		display:none!important;
+	}
+}
 </style>

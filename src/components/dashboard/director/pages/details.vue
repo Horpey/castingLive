@@ -19,10 +19,36 @@
                                 <div class="col-md-12 mt-2">
                                     <h2>
                                         {{role.role_name}}
+
+                                         <div class="dropdown">
+                                            <button class="float-right btn btn-ppd btn-sm dropdown-toggle" type="button" data-toggle="dropdown" style="bottom: 40px;">
+                                                Settings
+                                                <span class="caret"></span>
+                                            </button>
+                                            <div id="pos">
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <router-link class="dropdown-item" v-bind:to="'/project/editRole/'+role.id">Edit Role</router-link>
+                                                    </li>
+
+                                                    <li>
+
+                                                        <router-link class="dropdown-item" v-bind:to="'/project/applicants/'+role.id">View Applicant</router-link>
+                                                    </li>
+
+                                                    <li>
+
+                                                        <a target="_blank" :href="'https://api.cast.i.ng/recordprovideo/'+ role.id +'?t=r'" class="dropdown-item">Add Video Intro</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+
                                     </h2>
                                     <p>
                                         <b class="col-ppd">Description</b>: <span class="desc-limit">{{role.description}} </span></p>
-                                    <p>
+                                    <!-- <p>
                                         <b class="col-ppd">Applicant</b>: {{role.applicants}}</p>
                                     <p>
 
@@ -30,7 +56,7 @@
 
                                         <router-link class="btn btn-ppd btn-sm border-0" v-bind:to="'/project/applicants/'+role.id">View Applicants</router-link>
 
-                                    </p>
+                                    </p> -->
                                 </div>
                             </div>
 

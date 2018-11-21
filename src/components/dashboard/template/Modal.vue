@@ -1,5 +1,48 @@
 <template>
     <div>
+
+        <!-- Subscribe Here -->
+        <div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" style="display: none;"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialogSub" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                    <div class="modal-body card">
+                        <div class="container-fluid">
+                                <div class="col-md-12 ">
+                                    <div class="row py-5 px-4">
+                                                                         <!-- # code... -->
+                                    <div v-for="subPackage in subPackages" class="col-md-4 mb-3">
+                                        <div class="pricing-table-item">
+                                            <div class="pricing-table-item-head text-center" id="bdg">
+                                                <p class="month_ly fontz pt-2 pb-1 mb-1">{{subPackage.title}}</p>
+                                            </div>
+                                    
+                                            <div class="pricing-table-item-price text-center">
+                                                <p v-html="subPackage.price" style="font-size: 3em;" class="pb-1 mb-0"></p>
+                                                <span>Duration: {{subPackage.days}} days</span>
+                                            </div>
+                                            <div class="pricing-table-item-purchase">
+                                                <a target="_blank" :href="subPackage.url+'&uid='+uid" class="btn btn-ppd btn-block py-2">Subscribe Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Subscribe Here -->
+
         <!-- Add Job Modal -->
         <div class="modal fade" id="addjob" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" style="display: none;"
             aria-hidden="true">
@@ -274,6 +317,8 @@
                 error: false,
                 projectRoles: '',
                 projectTypes: '',
+                subPackages: '',
+                uid: '',
                 siteUrl: "https://api.cast.i.ng/",
             };
         },
@@ -333,6 +378,8 @@
 
                 let userID = JSON.parse(localStorage.getItem('token'));
 
+
+
                 const API_URL = process.env.API_URL || 'https://api.cast.i.ng'
 
                 axios.post(API_URL + '/addjob/' + userID, form).then(result => {
@@ -370,6 +417,10 @@
 
             this.loading = true;
 
+            let userID = JSON.parse(localStorage.getItem('token'));
+
+            this.uid = userID;
+
             var config = {
                 headers: {
                     'Access-Control-Allow-Origin': '*'
@@ -404,6 +455,20 @@
                 console.error(error);
             });
 
+            // Get Subscription
+            axios({
+                method: "GET",
+                "url": 'https://api.cast.i.ng/getsubs',
+                config
+            }).then(result => {
+                this.loading = false;
+                this.subPackages = result.data.list;
+            }, error => {
+                this.loading = false;
+                console.log('API CALL FAILED');
+                console.error(error);
+            });
+
         }
     };
 </script>
@@ -428,5 +493,15 @@
     .btn-ppd:hover {
         background-color: #3f0047 !important;
         color: white !important;
+    }
+    @media (min-width: 576px){
+        .modal-dialogSub {
+            max-width: 1198px!important;
+        }
+    }
+    .pricing-table-item-head{
+        background: #3f0047;
+        color: white;
+        font-size: 14px;
     }
 </style>

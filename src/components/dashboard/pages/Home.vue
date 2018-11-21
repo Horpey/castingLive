@@ -69,7 +69,8 @@
                                     <span v-html="applied.description"></span>
                                 </p>
                                 <div class="">
-                                    <button class="btn btn-xs btn-movie"><span class="fa fa-film"></span>Intro Video</button>
+
+                                    <button v-on:click="introVideo(allAudition.dir_video_link)" class="btn btn-xs btn-movie"><span class="fa fa-film"></span> Intro Video</button>
                                 </div>
                                 <p class="mb-4">
                                     <b class="col-ppd">Status</b>: 
@@ -140,6 +141,13 @@ export default {
 			}
 		);
 	},
+    methods: {
+        introVideo(introVid){
+            localStorage.introVid = introVid;
+            this.$router.replace(this.$route.query.redirect || '/dashboard/introVideo')
+        },
+    }
+    
 };
 </script>
 

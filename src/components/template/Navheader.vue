@@ -1,10 +1,13 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top opaque-navbar r-navbar-shadow home-headerr">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top opaque-navbar r-navbar-shadow">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">
+
+				<router-link class="navbar-brand" v-bind:to="'/Home'">
 					<img src="../../assets/images/logo1.png">
-				</a>
+				</router-link>
+
+
 				<button class="navbar-toggler navbar-toggler-right r-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
 				    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -74,5 +77,12 @@
 
 .sidebar-hidd{
 	right: 100%!important;
+}
+.navColor{
+	background-color: #3f0048!important;
+}
+
+.navbar-brand{
+	border-bottom: 0px!important;
 }
 </style>

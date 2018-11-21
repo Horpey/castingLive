@@ -12,13 +12,15 @@
                     <h3 class="text-center col-p">Login to Cast.i.ng Manager</h3>
                     <small class="text-center col-pk">ACCESS YOUR ACCOUNT LOGIN TODAY</small>
 
-                    <div style="margin-top: 12px;" class="alert alert-danger" v-if="error">{{ error }}</div>
+                    
 
                     <form class="msform mt-4" @submit.prevent="login">
                         
                         <input v-model="email" class="mb-2" type="email" placeholder="Email" />
                         
                         <input v-model="password" class="mb-2" type="password" placeholder="Password" />
+
+                        <div style="margin-top: 12px;" class="alert alert-danger" v-if="error">{{ error }}</div>
 
                         <button type="submit" class="btn btn-ppd btn-block wd">
                             <img v-if="formLoading" class="form-loader" src="../../assets/images/white-loader.svg" alt="Loader" />
@@ -162,9 +164,29 @@ export default {
 				console.log('Page Error');
 			}
 		);
-
-
 	},
+    head: {
+      title: {
+        inner: 'Login'
+      },
+      // Meta tags
+      meta: [
+        { name: 'application-name', content: 'Casting' },
+        { name: 'description', content: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.', id: 'desc' }, // id to replace intead of create element
+        // ...
+        // Twitter
+        { name: 'twitter:title', content: 'Casting' },
+        // with shorthand
+        { n: 'twitter:description', c: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.'},
+        // ...
+        // Facebook / Open Graph
+        { property: 'fb:app_id', content: '123456789' },
+        { property: 'og:title', content: 'Casting' },
+        // with shorthand
+        { p: 'og:image', c: 'https://cast.i.ng/static/img/icons/favicon-32x32.png' },
+        // ...
+      ]
+    }
 };
 </script>
 

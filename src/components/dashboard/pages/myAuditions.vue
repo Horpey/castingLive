@@ -32,6 +32,7 @@
                         <b class="col-ppd">Role Description</b>:
                         <span v-html="myAudition.description"></span>
                     </p>
+                    <button v-on:click="introVideo(allAudition.dir_video_link)" class="btn btn-xs btn-movie"><span class="fa fa-film"></span> Intro Video</button>
                     <p class="mb-4">
                         <b class="col-ppd">Status</b>: <span class="badge badge-success">{{myAudition.status}}</span>
                     </p>
@@ -86,6 +87,12 @@
                 console.error(error);
             });
         },
+        methods: {
+            introVideo(introVid){
+                localStorage.introVid = introVid;
+                this.$router.replace(this.$route.query.redirect || '/dashboard/introVideo')
+            },
+        }
     };
 </script>
 
@@ -93,4 +100,11 @@
     .cv-pad {
         padding: 10px 16px !important;
     }
+    .btn-movie{
+        background-color: #e7077d;
+    color: white;
+}
+.btn-movie span{
+    margin-right: 10px;
+}
 </style>

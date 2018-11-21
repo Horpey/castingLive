@@ -4,39 +4,6 @@
 
         <header id="topnav" >
 
-            <div :class="{toggleside: toggledSide}">
-                 <div id="sidebar-wrapper" >
-
-                        <ul class="sidebar-nav" >
-                            <li class="sidebar-brand mt-2 mb-2">
-                                <a href="#">
-                                    <!-- <img src="../../../../assets/images/logo1.png"> -->
-                                </a>
-                            </li>
-                            <li>
-                                <a href="dashboard.html">Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="auditions.html">Auditions</a>
-                            </li>
-                            <li class="active">
-                                <a href="profile.html">My Profile</a>
-                            </li>
-                            <li>
-                                <a href="photo.html">Photo Gallery</a>
-                            </li>
-                            <li>
-                                <a href="video.html">Video</a>
-                            </li>
-                            <li>
-                                <a href="audio.html">Audio</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-
-
             <div class="topbar-main">
                 <div class="container">
 
@@ -69,7 +36,7 @@
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#"
                                     role="button" aria-haspopup="false" aria-expanded="false">
-                                    <i class="ti-bell noti-icon"></i>
+                                    <i class="fa fa-bell noti-icon"></i>
                                     <span class="badge badge-danger noti-icon-badge">{{notificationCount.data.count}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
@@ -82,7 +49,7 @@
 
                                     <router-link v-bind:to="'/dashboard/notifications'" class="dropdown-item notify-item"
                                         v-for="notification in notification.data.list" :key="notification">
-                                        <div class="notify-icon bg-primary"><i class="mdi mdi-account"></i></div>
+                                        <div class="notify-icon bg-primary"><i class="fa fa-user"></i></div>
                                         <p class="notify-details"><b>{{notification.title}}</b><small class="text-muted">{{notification.message}}</small></p>
                                     </router-link>
 
@@ -93,7 +60,7 @@
                                         All
                                     </router-link>
                                     <!-- All-->
-                                    <router-link v-bind:to="'/dashboard/settings'" class="dropdown-item notify-item settings"><span class="fa fa-cog"></span>  Notifictions Settings
+                                    <router-link v-bind:to="'/dashboard/settings'" class="dropdown-item notify-item settings"><span class="fa fa-cog"></span>  Notifications Settings
                                     </router-link>
 
                                 </div>
@@ -110,13 +77,13 @@
                                             <h5>Welcome</h5>
                                         </div>
                                         <router-link v-bind:to="'/dashboard/profile'" class="dropdown-item">
-                                            <i class="mdi mdi-account-circle m-r-5 text-muted"></i>
+                                            <i class="fa fa-user m-r-5 text-muted"></i>
                                             {{profileData.data.profile.firstname}}
                                         </router-link>
 
 
                                         <div class="dropdown-divider"></div>
-                                        <a style="cursor: pointer;" class="dropdown-item" v-on:click="logOut"><i class="mdi mdi-logout m-r-5 text-muted"></i>
+                                        <a style="cursor: pointer;" class="dropdown-item" v-on:click="logOut"><i class="fa fa-sign-out m-r-5 text-muted"></i>
                                             Logout</a>
                                     </div>
                                 </div>
@@ -143,6 +110,61 @@
             </div>
             <!-- end topbar-main -->
 
+
+            <!-- MENU Start -->
+            <div class="navbar-custom">
+                <div class="container">
+                    <div id="navigation">
+                        <!-- Navigation Menu-->
+                        <ul class="navigation-menu">
+                            <li class="has-submenu ">
+                                <router-link v-bind:to="'/dashboard/home'">
+                                    <i class="fa fa-tachometer"></i>Dashboard
+                                </router-link>
+                            </li>
+
+                            <li class="has-submenu">
+                                <router-link v-bind:to="'/dashboard/auditions'">
+                                    <i class="fa fa-users"></i>Auditions
+                                </router-link>
+                            </li>
+
+
+                            <li class="has-submenu ">
+                                <router-link v-bind:to="'/dashboard/profile'">
+                                    <i class="fa fa-user"></i>My Profile
+                                </router-link>
+
+                            </li>
+
+                            <li class="has-submenu">
+                                <router-link v-bind:to="'/dashboard/photo'">
+                                    <i class="fa fa-picture-o"></i>Photo Gallery
+                                </router-link>
+                            </li>
+
+                            <li class="has-submenu">
+                                <router-link v-bind:to="'/dashboard/video'">
+                                    <i class="fa fa-video-camera"></i>Video
+                                </router-link>
+                            </li>
+
+                            <li class="has-submenu">
+                                <router-link v-bind:to="'/dashboard/audio'">
+                                    <i class="fa fa-volume-up"></i>Audio
+                                </router-link>
+                            </li>
+                        </ul><!-- End navigation menu -->
+
+                    </div> <!-- end #navigation -->
+                </div> <!-- end container -->
+            </div> <!-- end navbar-custom -->
+
+            
+
+        </header>
+
+        
             <div class="sidebar-toggle hidden-desktop">
                 <div class="">
                     <div class="sidebar-bg" :style="{'background': ' url('+ profileData.data.profile.image + ')' }"></div>
@@ -197,59 +219,6 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- MENU Start -->
-            <div class="navbar-custom">
-                <div class="container">
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-                            <li class="has-submenu ">
-                                <router-link v-bind:to="'/dashboard/home'">
-                                    <i class="mdi mdi-view-dashboard"></i>Dashboard
-                                </router-link>
-                            </li>
-
-                            <li class="has-submenu">
-                                <router-link v-bind:to="'/dashboard/auditions'">
-                                    <i class="fa fa-users"></i>Auditions
-                                </router-link>
-                            </li>
-
-
-                            <li class="has-submenu ">
-                                <router-link v-bind:to="'/dashboard/profile'">
-                                    <i class="fa fa-user"></i>My Profile
-                                </router-link>
-
-                            </li>
-
-                            <li class="has-submenu">
-                                <router-link v-bind:to="'/dashboard/photo'">
-                                    <i class="mdi mdi-cards"></i>Photo Gallery
-                                </router-link>
-                            </li>
-
-                            <li class="has-submenu">
-                                <router-link v-bind:to="'/dashboard/video'">
-                                    <i class="fa fa-video-camera"></i>Video
-                                </router-link>
-                            </li>
-
-                            <li class="has-submenu">
-                                <router-link v-bind:to="'/dashboard/audio'">
-                                    <i class="fa fa-volume-up"></i>Audio
-                                </router-link>
-                            </li>
-                        </ul><!-- End navigation menu -->
-
-                    </div> <!-- end #navigation -->
-                </div> <!-- end container -->
-            </div> <!-- end navbar-custom -->
-
-            
-
-        </header>
        
         <!-- End Navigation Bar-->
     </div>
@@ -379,8 +348,10 @@
     width: 80%;
     box-shadow: 5px 0px 8px 0px #0000003d;
     left: -83%;
-    position: relative;
+    position: fixed;
+    -webkit-transition: 0.5s all;
     transition: 0.5s all;
+    z-index: 9999;
 }
 .sidebarToggleActive{
     left: 0!important;

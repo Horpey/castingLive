@@ -9,11 +9,13 @@
                     <div class="round" align="center">
 
                     <h3 class="text-center col-p">Reset Password</h3>
-                    <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{ error }}</div>
+                    
                     <form class="msform mt-4" @submit.prevent="forgotPassword">
 
                         <input class="mb-2" v-model="password1" type="password" placeholder="New Password" required/>
                         <input class="mb-2" v-model="password2" type="password" placeholder="Confirm Password" required/>
+
+                        <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{ error }}</div>
 
                         <button type="submit" class="btn btn-ppd btn-block wd">
                         	<img v-if="formLoading" class="form-loader" src="../../assets/images/white-loader.svg" alt="Loader" />
@@ -97,6 +99,28 @@ export default {
 			}
 		);
 	},
+  head: {
+    title: {
+      inner: 'Reset Password'
+    },
+    // Meta tags
+    meta: [
+      { name: 'application-name', content: 'Casting' },
+      { name: 'description', content: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.', id: 'desc' }, // id to replace intead of create element
+      // ...
+      // Twitter
+      { name: 'twitter:title', content: 'Casting' },
+      // with shorthand
+      { n: 'twitter:description', c: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.'},
+      // ...
+      // Facebook / Open Graph
+      { property: 'fb:app_id', content: '123456789' },
+      { property: 'og:title', content: 'Casting' },
+      // with shorthand
+      { p: 'og:image', c: 'https://cast.i.ng/static/img/icons/favicon-32x32.png' },
+      // ...
+    ]
+  }
 };
 </script>
 

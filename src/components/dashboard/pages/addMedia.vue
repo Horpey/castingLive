@@ -21,12 +21,16 @@
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }"
                             v-if="error">{{ error }}</div>
+                            <div class="">
+                                <a v-if="SubscribeNow" class="btn btn-success btn-filled" data-toggle="modal" data-target="#subscribe" style="cursor: pointer; color: white;">Subscribe Now</a>
+                            </div>
                         <form class="msform mt-2">
                             <label class="labelly">Headshot</label>
                             <div id="room_fileds">
                                 <input class="mb-2" type="file" @change="processFile($event)" placeholder="Upload Picture"
                                     accept="image/*" required>
                             </div>
+
                             <hr>
                             <button type="submit" class="btn btn-ppd wd">
                                 <img v-if="formLoading" class="form-loader" src="../../../assets/images/white-loader.svg"
@@ -39,6 +43,11 @@
                     <div class="tab-pane fade" id="nav-scene" role="tabpanel" aria-labelledby="nav-scene-tab">
                         <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }"
                             v-if="error">{{ error }}</div>
+
+                            <div class="">
+                                <a v-if="SubscribeNow" class="btn btn-success btn-filled" data-toggle="modal" data-target="#subscribe" style="cursor: pointer; color: white;">Subscribe Now</a>
+                            </div>
+
                         <form class="msform mt-2"  @submit.prevent="postScenes">
 
                             <div class="row">
@@ -81,6 +90,10 @@
                         <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }"
                             v-if="error">{{ error }}</div>
 
+                            <div class="">
+                                <a v-if="SubscribeNow" class="btn btn-success btn-filled" data-toggle="modal" data-target="#subscribe" style="cursor: pointer; color: white;">Subscribe Now</a>
+                            </div>
+
                         <form class="msform mt-2" @submit.prevent="addVideo">
                             <div id="room_fileds">
                                 <b>Title:</b>
@@ -116,6 +129,10 @@
                         <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }"
                             v-if="error">{{ error }}</div>
 
+                            <div class="">
+                                <a v-if="SubscribeNow" class="btn btn-success btn-filled" data-toggle="modal" data-target="#subscribe" style="cursor: pointer; color: white;">Subscribe Now</a>
+                            </div>
+
                         <form class="msform mt-2" @submit.prevent="addAudio">
                             <div id="room_fileds">
                                 <b>Title:</b>
@@ -148,14 +165,20 @@
                 </div>
             </div>
         </div>
+        <Modal />
     </div>
 </template>
 
 <script>
+import Modal from '../template/Modal';
     import Loader from '../template/loader';
     import axios from 'axios';
     export default {
         name: 'addMedia',
+        components: {
+            Modal: Modal,
+            loader: Loader
+        },
         data() {
             return {
                 loading: true,
@@ -177,6 +200,7 @@
                 project: '',
                 error: false,
                 status: false,
+                SubscribeNow: false,
                 siteUrl: "https://api.cast.i.ng/",
                 scenesForm: new FormData()
             };
@@ -205,6 +229,10 @@
                     console.log(result.data)
                     this.error = result.data.status_msg;
                     this.status = result.data.status;
+                     if(!this.status){
+                        this.SubscribeNow = true;
+                    }
+
                 }, error => {
                     this.error = 'Failed to Upload Picture';
                     this.formLoading = false;
@@ -248,6 +276,9 @@
 
                     this.error = result.data.status_msg;
                     this.status = result.data.status;
+                    if(!this.status){
+                        this.SubscribeNow = true;
+                    }
 
                     if (this.status) {
                         // Clear data
@@ -283,6 +314,10 @@
 
                     this.error = result.data.status_msg;
                     this.status = result.data.status;
+
+                    if(!this.status){
+                        this.SubscribeNow = true;
+                    }
 
                     if (this.status) {
                         // Clear data
@@ -323,6 +358,10 @@
 
                     this.error = result.data.status_msg;
                     this.status = result.data.status;
+
+                    if(!this.status){
+                        this.SubscribeNow = true;
+                    }
 
                     if (this.status) {
                         // Clear data
@@ -406,4 +445,10 @@
     .nav-link{
         text-transform: capitalize;
     }
+    .subscribe-btn{
+            background: green;
+    cursor: pointer;
+    color: white;
+    }
+
 </style>

@@ -9,10 +9,11 @@
                 <router-link class="mdb float-right" v-bind:to="'/director/addProject'">Add Project</router-link>
                 </p>
 
-
-
-                <div class="cv" v-for="recent in recentProject.data.list">
+                <div class="cv" v-for="recent in recentProject.data.list" style="position: relative">
                     <div class="col-md-12 mt-2">
+                        <div>
+                            <p class="projectStat">FREE</p>
+                        </div>
                         <div>
                            <div class="row">
                                <div class="col-md-4" style="overflow-y: hidden;">
@@ -151,4 +152,16 @@ export default {
 </script>
 
 <style>
+.projectStat{
+        color: white;
+    background: #e6077c;
+    display: inline-block;
+    font-weight: bold;
+    padding: 2px 15px;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    font-size: 12px;
+    border: 1px dashed;
+}
 </style>

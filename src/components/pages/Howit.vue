@@ -1,8 +1,7 @@
 <template>
     <div>
-		<styles/>
 		<loader v-if="loading"/>
-        <header class="sub-ban clippath" :style="{'background': 'linear-gradient(180deg, #000c, #00000080), url('+ require ('../../assets/images/ban1.jpg') + ')'}">
+        <header class="sub-ban clippath" :style="{'background': 'linear-gradient(180deg, #000c, #00000080), url('+ require ('../../assets/images/background.jpg') + ')'}">
 			<div class="container about-headd" style="padding-top: 175px;">
 				<div class="row">
 					<div class="col-lg-7 mx-auto text-white text-center">
@@ -114,7 +113,6 @@
 <script>
 import axios from 'axios';
 import Loader from '../template/loader';
-import Styles from '../template/styles';
 
 export default {
 	name: 'howit',
@@ -125,7 +123,6 @@ export default {
 	},
 	components: {
 		loader: Loader,
-		styles: Styles,
 	},
 	mounted() {
 		this.loading = true;
@@ -140,6 +137,28 @@ export default {
 			}
 		);
 	},
+	head: {
+	  title: {
+	    inner: 'How it Works'
+	  },
+	  // Meta tags
+	  meta: [
+	    { name: 'application-name', content: 'Casting' },
+	    { name: 'description', content: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.', id: 'desc' }, // id to replace intead of create element
+	    // ...
+	    // Twitter
+	    { name: 'twitter:title', content: 'Casting' },
+	    // with shorthand
+	    { n: 'twitter:description', c: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.'},
+	    // ...
+	    // Facebook / Open Graph
+	    { property: 'fb:app_id', content: '123456789' },
+	    { property: 'og:title', content: 'Casting' },
+	    // with shorthand
+	    { p: 'og:image', c: 'https://cast.i.ng/static/img/icons/favicon-32x32.png' },
+	    // ...
+	  ]
+	}
 };
 </script>
 

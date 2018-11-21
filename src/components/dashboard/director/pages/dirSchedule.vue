@@ -11,6 +11,8 @@
 
                 </p>
 
+                 <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{ error }}</div>
+
                 <table class="table table-striped mb-0">
                     <tbody>
                         <tr>
@@ -41,7 +43,7 @@
                                     <div id="pos">
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="#" onclick="return confirm('Are you sure?');">Delete</a>
+                                                <a style="cursor: pointer;" v-on:click="deleteSchedule(schedule.id)" class="dropdown-item" >Delete</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -65,6 +67,8 @@ export default {
             loading: true,
             scheduleData: "",
             token: '',
+            scheduleMsg: '',
+            error: '',
             siteUrl: "https://api.cast.i.ng/",
         };
     },
@@ -107,8 +111,55 @@ export default {
             }
         );
     },
+
+    methods: {
+        deleteSchedule(scheduleID){
+            var sureDelete = confirm('Are you sure you want to delete??');
+            if(sureDelete){
+                var config = {
+                    headers: { 'Access-Control-Allow-Origin': '*' },
+                };
+
+                axios({ method: 'GET', url: 'https://api.cast.i.ng/delete/event/' + scheduleID, config }).then(
+                    result => {
+                        this.loading = false;
+                        this.scheduleMsg = result;
+                        this.error = result.data.status_msg;
+                        location.reload();
+                        // this.$router.replace(this.$route.query.redirect || '/dashboard/profile');
+                    },
+                    error => {
+                        this.loading = false;
+                        console.log('API CALL FAILED');
+                        // this.$router.replace(this.$route.query.redirect || '/dashboard/profile');
+                        console.error(error);
+                        this.error = 'Failed to Delete';
+                    }
+                );
+
+            }
+            
+        }
+    }
 };
 </script>
 
 <style>
+
+.form-loader {
+        width: 22px;
+    }
+
+    .success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
 </style>

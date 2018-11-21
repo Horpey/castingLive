@@ -16,6 +16,7 @@
 							<tbody>
 								<tr>
 									<th><b>Type</b></th>
+									<th><b>Project Role</b></th>
 									<th><b>Date Uploaded</b></th>
 									<th><b>Media</b></th>
 									<th><b>Action</b></th>
@@ -24,20 +25,24 @@
 							<tbody>
 								<tr v-for="upload in uploadData.data.list">
 									<td class="text-capitalize">{{upload.type}}</td>
+									<td>{{upload.projectrole_name}}</td>
 									<td>{{upload.date | moment().format("DD MMM YYYY")}}</td>
 									<td>
-										<router-link v-if="upload.type === 'video' || upload.type === 'Video'" v-bind:to="'/project/previewVideo/'+upload.filename">
+										<a v-if="upload.type === 'video' || upload.type === 'Video'" v-on:click="viewuploadd(upload.media)">
 		                                    <span class="fa fa-film"></span>
-		                                </router-link>
+		                                </a>
 
-		                                <router-link v-if="upload.type === 'audio' || upload.type === 'Audio'" v-bind:to="'/project/previewVideo/'+upload.filename">
+		                                <a v-if="upload.type === 'audio' || upload.type === 'Audio'" v-on:click="viewuploadd(upload.media)">
 		                                    <span class="fa fa-volume-up"></span>
-		                                </router-link>
+		                                </a>
 									</td>
 									<td>
-										<router-link class="btn btn-xs btn-outline-success" v-bind:to="'/project/previewVideo/'+upload.filename">
+										
+
+										<button v-on:click="viewuploadd(upload.media)" class="btn btn-xs btn-outline-success">View</button>
+										<!-- <router-link class="btn btn-xs btn-outline-success" v-bind:to="'/project/previewVideo/'+upload.filename">
 		                                    View
-		                                </router-link>
+		                                </router-link> -->
 										<button class="btn btn-xs btn-outline-warning">Request for Video</button>
 									</td>
 								</tr>
@@ -99,6 +104,7 @@
 			}).then(
 				result => {
 					this.uploadData = result;
+					console.log(this.uploadData)
 				},
 				error => {
 					console.log('API CALL FAILED');
@@ -120,7 +126,12 @@
 				}
 			);
 		},
-		methods: {},
+		methods: {
+			viewuploadd(mediaUrl){
+				localStorage.mediaUrl = mediaUrl;
+				this.$router.replace(this.$route.query.redirect || '/project/previewVideo')
+			}
+		},
 	};
 </script>
 

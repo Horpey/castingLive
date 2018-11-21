@@ -14,7 +14,7 @@
                     <div class="container">
                     	<div class="row">
 	                    	<div class="col-md-3 p-1" v-for="photo in headshot">
-		                        <a :href="siteUrl + photo.image" data-fancybox="gallery">
+		                        <a target="_blank" :href="siteUrl + photo.image" data-fancybox="gallery">
 		                            <img class="rounded mx-auto d-block img-fluid" alt="200x200" :src="siteUrl + photo.image" data-holder-rendered="true" /> 
 		                        </a>
 		                        <button v-on:click="deleteImage(photo.id)" class="mv"><i class="fa fa-trash-o"></i> Delete</button>
@@ -30,7 +30,7 @@
                     <div class="container">
                     	<div class="row">
 	                    	<div class="col-md-3 p-1" v-for="photo in scene">
-		                        <a :href="siteUrl + photo.image" data-fancybox="gallery">
+		                        <a target="_blank" :href="siteUrl + photo.image" data-fancybox="gallery">
 		                            <img class="rounded mx-auto d-block img-fluid" alt="200x200" :src="siteUrl + photo.image" data-holder-rendered="true" /> 
 		                        </a>
 		                        <button v-on:click="deleteImage(photo.id)" class="mv"><i class="fa fa-trash-o"></i> Delete</button>

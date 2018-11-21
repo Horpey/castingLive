@@ -14,6 +14,9 @@
                         <b class="col-ppd">Role Description</b>:
                         <span v-html="allAudition.description"></span>
                     </p>
+                    
+                    <button v-on:click="introVideo(allAudition.dir_video_link)" class="btn btn-xs btn-movie"><span class="fa fa-film"></span> Intro Video</button>
+                    <!-- <router-link class="btn btn-xs btn-movie" v-bind:to="'/dashboard/introVideo/'+allAudition.projectrole_user_id"><span class="fa fa-film"></span> Intro Video</router-link> -->
                     <p v-if="!allAudition.applied">
                         <!-- <button v-on:click="applyAudtion(allAudition.id)" class="btn btn-ppd border-0">
                             <img v-if="formLoading" class="form-loader" src="../../../assets/images/white-loader.svg"
@@ -23,6 +26,8 @@
 
                         <!-- <router-link v-bind:to="'/dashboard/sendVideo'" class="btn btn-ppd border-0">Apply
                                 </router-link> -->
+
+                         
 
                         <a target="_blank" :href="'https://api.cast.i.ng/recordvideo/'+ allAudition.projectrole_user_id" class="btn btn-ppd border-0">Apply</a>
                         <!-- <router-link v-bind:to="'/dashboard/sendVideo'" class="btn btn-ppd border-0">Apply
@@ -82,6 +87,7 @@
                 result => {
                     this.loading = false;
                     this.allAudData = result;
+                    console.log(this.allAudData);
                 },
                 error => {
                     this.loading = false;
@@ -91,6 +97,10 @@
             );
         },
         methods: {
+            introVideo(introVid){
+                localStorage.introVid = introVid;
+                this.$router.replace(this.$route.query.redirect || '/dashboard/introVideo')
+            },
             applyAudtion(auditionID) {
                 // confirm('Are you sure?');
 
@@ -155,4 +165,11 @@
         background-color: #3f0047 !important;
         color: white !important;
     }
+    .btn-movie{
+        background-color: #e7077d;
+    color: white;
+}
+.btn-movie span{
+    margin-right: 10px;
+}
 </style>

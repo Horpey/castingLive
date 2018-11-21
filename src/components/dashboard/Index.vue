@@ -54,16 +54,39 @@ export default {
 	    if (!localStorage.token && this.$route.path !== '/') {
 	      this.$router.push('/?redirect=' + this.$route.path)
 	    }
-	}
+	},
+	head: {
+      title: {
+        inner: 'Dashboard'
+      },
+      // Meta tags
+      meta: [
+        { name: 'application-name', content: 'Casting' },
+        { name: 'description', content: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.', id: 'desc' }, // id to replace intead of create element
+        // ...
+        // Twitter
+        { name: 'twitter:title', content: 'Casting' },
+        // with shorthand
+        { n: 'twitter:description', c: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.'},
+        // ...
+        // Facebook / Open Graph
+        { property: 'fb:app_id', content: '123456789' },
+        { property: 'og:title', content: 'Casting' },
+        // with shorthand
+        { p: 'og:image', c: 'https://cast.i.ng/static/img/icons/favicon-32x32.png' },
+        // ...
+      ]
+    }
 };
 </script>
 
 <style>
 /* Dashboard Styles */
-@import '../../assets/assets/css/bootstrap-material-design.min.css';
-@import '../../assets/assets/css/icons.css';
+/*@import '../../assets/assets/css/bootstrap-material-design.min.css';*/
+/*@import '../../assets/vendor/bootstrap/css/bootstrap.min.css';*/
+/*@import '../../assets/assets/css/icons.css';*/
 @import '../../assets/assets/css/style.css';
-@import '../../assets/assets/css/sidebar.css';
+/*@import '../../assets/assets/css/sidebar.css';*/
 
 .wrapper {
     padding-top: 160px!important;
@@ -114,5 +137,9 @@ export default {
     box-sizing: border-box;
     color: #2C3E50;
     font-size: 13px;
+}
+
+.modal-dialog{
+  background-color: white!important;
 }
 </style>

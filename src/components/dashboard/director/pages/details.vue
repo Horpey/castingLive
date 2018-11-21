@@ -133,8 +133,9 @@ export default {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	line-height: 16px;
+	line-height: 19px;
 	max-height: 97px;
+	    margin-top: 16px;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 }

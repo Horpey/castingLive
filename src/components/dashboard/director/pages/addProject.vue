@@ -23,7 +23,7 @@
 
                         <b>Project description</b>
                         <textarea class="mb-2" col="10" v-model="description" required=""></textarea>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-6">
                                 <b>Minimum Pay</b>
                                 <input class="mb-2" type="number" placeholder="Minimum Pay" v-model="payrange_min"
@@ -35,7 +35,7 @@
                                 <input class="mb-2" type="number" placeholder="Maximum Pay" v-model="payrange_max"
                                     required="">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <div class="col-lg-6">

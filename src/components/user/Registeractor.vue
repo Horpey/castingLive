@@ -10,7 +10,7 @@
 
               <h3 class="text-center col-p">Actors</h3>
               <small class="text-center col-pk">REGISTER TODAY AS AN ACTORS IN CAST.I.NG MANAGER</small>
-              <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{ error }}</div>
+              
               <form class="msform mt-4" @submit.prevent="registerActor">
                 <input class="mb-2" type="text" v-model="firstname" placeholder="First Name" required="">
                 <input class="mb-2" type="text" v-model="lastname" placeholder="Last Name" required="">
@@ -65,6 +65,8 @@
                <input class="mb-2" type="password" v-model="password" placeholder="Password" required="">
                <input class="mb-2" type="password" v-model="password2" placeholder="Confirm Password" required="">
                <input class="mb-2" type="file" @change="processFile($event)" placeholder="Upload Picture" accept="image/*">
+
+               <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{ error }}</div>
 
                 <button type="submit" class="btn btn-ppd btn-block wd">
                   <img v-if="formLoading" class="form-loader" src="../../assets/images/white-loader.svg" alt="Loader" />
@@ -198,6 +200,7 @@ export default {
     },
 
     registerFailed () {
+      this.formLoading = false;
       // Clear data
       this.firstname = '';
       this.lastname = '';
@@ -244,6 +247,28 @@ export default {
 			}
 		);
 	},
+  head: {
+    title: {
+      inner: 'Actor'
+    },
+    // Meta tags
+    meta: [
+      { name: 'application-name', content: 'Casting' },
+      { name: 'description', content: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.', id: 'desc' }, // id to replace intead of create element
+      // ...
+      // Twitter
+      { name: 'twitter:title', content: 'Casting' },
+      // with shorthand
+      { n: 'twitter:description', c: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.'},
+      // ...
+      // Facebook / Open Graph
+      { property: 'fb:app_id', content: '123456789' },
+      { property: 'og:title', content: 'Casting' },
+      // with shorthand
+      { p: 'og:image', c: 'https://cast.i.ng/static/img/icons/favicon-32x32.png' },
+      // ...
+    ]
+  }
 };
 </script>
 

@@ -10,9 +10,12 @@
                 </p>
                 <div style="margin-top: 12px;" class="alert" v-bind:class="{ success: status, danger: !status }" v-if="error">{{
                     error }}</div>
-                <div class="cv" v-for="recent in recentProject.data.list">
+                <div class="cv" v-for="recent in recentProject.data.list" style="position: relative;">
                     <div class="col-md-12 mt-2">
                         <div>
+                            <div>
+                                <p class="projectStat">FREE</p>
+                            </div>
                             <div class="row">
                                 <div class="col-md-4" style="overflow-y: hidden;">
                                     <img class="wdd1 float-left mr-4 rounded" :src="recent.image">
@@ -48,6 +51,13 @@
                                     <p><b class="col-ppd">Description</b>: {{recent.description}}</p>
                                     <p><b class="col-ppd">Total Applicants</b>: {{recent.applicants}}</p>
                                     <p><b class="col-ppd">Total Roles</b>: {{recent.roles_created}}</p>
+                                    <div class="actions">
+                                        <button data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom" class="btn btn-sm btn-pink text-white">Edit Project</button>
+                                        <button class="btn btn-sm btn-pink text-white">Manage Roles</button>
+                                        <button class="btn btn-sm btn-danger text-white">Delete Project</button>
+                                    </div>
+    
+                                    
                                 </div>
                             </div>
                         </div>
@@ -79,6 +89,7 @@
             loader: Loader,
         },
         mounted() {
+
             this.token = JSON.parse(localStorage.getItem('token'));
             console.log(this.token);
 
@@ -167,4 +178,17 @@
         background-color: #f8d7da;
         border-color: #f5c6cb;
     }
+
+    .projectStat{
+        color: white;
+    background: #e6077c;
+    display: inline-block;
+    font-weight: bold;
+    padding: 2px 15px;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    font-size: 12px;
+    border: 1px dashed;
+}
 </style>

@@ -344,7 +344,7 @@ export default {
             currentUrl: '',
 			formLoading: '',
 			siteUrl: 'https://api.cast.i.ng/',
-            siteUrlshare: 'https://cast.i.ng',
+            siteUrlshare: 'https://cast.i.ng/#',
 		};
 	},
 	components: {

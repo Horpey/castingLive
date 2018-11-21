@@ -62,13 +62,15 @@ export default {
 
 <style>
 /* Dashboard Styles */
-@import '../../../assets/assets/css/bootstrap-material-design.min.css';
-@import '../../../assets/assets/css/icons.css';
+/*@import '../../assets/assets/css/bootstrap-material-design.min.css';*/
+/*@import '../../assets/vendor/bootstrap/css/bootstrap.min.css';*/
+/*@import '../../assets/assets/css/icons.css';*/
 @import '../../../assets/assets/css/style.css';
-@import '../../../assets/assets/css/sidebar.css';
+/*@import '../../assets/assets/css/sidebar.css';*/
 
 .wrapper {
 	padding-top: 160px;
+	    padding-bottom: 90px;
 }
 
 .home-footer {
@@ -106,6 +108,10 @@ export default {
 
 .router-link-active {
 	border-bottom: 0px !important;
+}
+
+.modal-dialog{
+	background: white;
 }
 
 

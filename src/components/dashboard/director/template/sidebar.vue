@@ -31,7 +31,7 @@
                 <!-- <h5 class="col-ppd">SHORTCUTS</h5> -->
 
 
-                <i class="mdi mdi-file-document col-pink mr-2"></i>
+                <i class="fa fa-file col-pink mr-2"></i>
 
                 <router-link v-bind:to="'/director/addProject'">Add Project</router-link>
 

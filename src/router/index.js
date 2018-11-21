@@ -6,6 +6,8 @@ import pricing from '@/components/pages/pricing';
 import workshop from '@/components/pages/workshop';
 import blog from '@/components/pages/blog';
 import Howit from '@/components/pages/Howit';
+import Featured from '@/components/pages/Featured';
+
 import Forgotpassword from '@/components/user/Forgotpassword';
 import ResetPassword from '@/components/user/ResetPassword';
 import Login from '@/components/user/Login';
@@ -23,6 +25,10 @@ import home from '@/components/dashboard/pages/home';
 import audio from '@/components/dashboard/pages/audio';
 import photo from '@/components/dashboard/pages/photo';
 import addMedia from '@/components/dashboard/pages/addMedia';
+import introVideo from '@/components/dashboard/pages/introVideo';
+
+
+
 
 import settings from '@/components/dashboard/pages/settings';
 
@@ -113,6 +119,11 @@ export default new Router({
       path: '/howit',
       name: 'Howit',
       component: Howit,
+    },
+    {
+      path: '/Featured/:id',
+      name: 'Featured',
+      component: Featured,
     },
     {
       path: '/pricing',
@@ -252,6 +263,12 @@ export default new Router({
           component: addMedia,
         },
         {
+          path: 'introVideo',
+          name: 'introVideo',
+          component: introVideo,
+        },
+        
+        {
           path: 'settings',
           name: 'settings',
           component: settings,
@@ -373,7 +390,7 @@ export default new Router({
           component: createAudition,
         },
         {
-          path: 'previewVideo/:id',
+          path: 'previewVideo',
           name: 'previewVideo',
           component: previewVideo,
         },

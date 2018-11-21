@@ -5,13 +5,15 @@
 			<div class="card-body">
 				<div>
 					<p class="cv1">
-						<b class="col-ppd">Preview Video</b>
-						 <router-link v-bind:to="'/director/projects'" class="mdb float-right text-white">View Projects
+						<b class="col-ppd">Video Intro</b>
+						 <router-link v-bind:to="'/dashboard/auditions'" class="mdb float-right text-white">View Auditions
                                 </router-link>
 					</p>
 					<div style="text-align: center;">
 						<video style="width: 80%;" height="350" controls>
 							<source :src="videoUrl">
+						  <!-- <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4"> -->
+						  <!-- <source src="movie.ogg" type="video/ogg"> -->
 						  Your browser does not support the video tag.
 						</video>
 					</div>
@@ -24,8 +26,9 @@
 <script>
 	import axios from 'axios';
 	import Loader from '../template/loader';
+
 	export default {
-		name: 'previewVideo',
+		name: 'introVideo',
 		data() {
 			return {
 				loading: true,
@@ -40,9 +43,9 @@
 			loader: Loader,
 		},
 		mounted() {
-			let videoID = JSON.parse(localStorage.getItem('mediaUrl'));
-			this.videoUrl = videoID;
-			console.log("Hello WOrld" + this.videoUrl);
+			// let videoID = JSON.parse(localStorage.getItem('introVid'));
+			this.videoUrl = localStorage.getItem('introVid');;
+			console.log(this.videoUrl);
 			this.loading = true;
 			axios.get('https://jsonplaceholder.typicode.com/todos/1').then(
 				response => {
@@ -55,29 +58,8 @@
 				}
 			);
 		},
-		methods: {},
 	};
 </script>
 
 <style>
-	.form-loader {
-		width: 22px;
-	}
-
-	.success {
-		color: #155724;
-		background-color: #d4edda;
-		border-color: #c3e6cb;
-	}
-
-	.danger {
-		color: #721c24;
-		background-color: #f8d7da;
-		border-color: #f5c6cb;
-	}
-
-	.btn-ppd:hover {
-		background-color: #3f0047 !important;
-		color: white !important;
-	}
 </style>

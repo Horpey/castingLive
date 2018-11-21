@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <styles/>
     <!-- @detected-condition fires when the connectivity status of the device changes -->
     <offline class="statusConnect" v-on:detected-condition="detected" @detected-condition="handleConnectivityChange" v-on:>
       <!-- Only renders when the device is online -->
@@ -24,12 +25,15 @@
 import navheader from './components/template/navheader';
 import siteFooter from './components/template/siteFooter';
 import offline from 'v-offline';
+import Styles from './components/template/styles';
+
 export default {
 	name: 'app',
 	components: {
 		navheader: navheader,
 		siteFooter: siteFooter,
-    offline
+    offline,
+    styles: Styles,
   },
   data: function () {
     return {
@@ -55,18 +59,24 @@ export default {
        }, 3000);
     }
   },
+  mounted(){
+    // if (location.protocol != 'https:')
+    //   {
+    //    location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    //   }
+  }
   // Usage with context the component
-  head: {
-    // To use "this" in the component, it is necessary to return the object through a function
-    title: function () {
-      return {
-        inner: this.title
-      }
-    },
-    meta: [
-      { name: 'description', content: this.describ , id: 'desc' }
-    ]
-  },
+  // head: {
+  //   // To use "this" in the component, it is necessary to return the object through a function
+  //   title: function () {
+  //     return {
+  //       inner: this.title
+  //     }
+  //   },
+  //   meta: [
+  //     { name: 'description', content: this.describ , id: 'desc' }
+  //   ]
+  // },
 
   // updated () {
   //   if (!localStorage.token && this.$route.path !== '/') {

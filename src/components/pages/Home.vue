@@ -1,6 +1,5 @@
 <template>
     <div >
-		<styles/>
 		<loader v-if="loading"/>
         <header>
 			<div id="carouselExampleFade" class="carousel slide carousel-fade bgg" data-ride="carousel">
@@ -9,7 +8,8 @@
 						<div class="clippath" alt="First slide" :style="{'background': 'linear-gradient(180deg, #0000, #00000080), url('+ slider.image + ')' }">
 							<div class="container pt-c">
 								<div class="row">
-									<div class="col-lg-7 mx-auto text-white text-center">
+									<div class="col-md-5"></div>
+									<div class="col-lg-7 text-white home-textt">
 										
 										<h1 class="slider-head text-capitalize" style="font-size: 30px;">{{slider.title}}</h1>
 										<h5 class="r-14">{{slider.description}}</h5>
@@ -61,20 +61,22 @@
 
 <section class="sec5">
 	<div class="container">
+		<!-- {{homeProject.list}} -->
 		<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
-				<li v-for="(featured, index) in featured" :class="{ 'active': index === 0 }" data-target="#carouselExampleIndicators2" :data-slide-to="index"></li>
+				<li v-for="(featured, index) in homeProject.list" :class="{ 'active': index === 0 }" data-target="#carouselExampleIndicators2" :data-slide-to="index"></li>
 			</ol>
+			
 			<div class="carousel-inner">
-				<div class="carousel-item" v-for="(featured, index) in featuredProjects" :class="{ 'active': index === 0 }">
+				<div class="carousel-item" v-for="(featured, index) in homeProject.list" :class="{ 'active': index === 0 }">
 					<div class="row">
 						<div class="col-md-4">
-							<img class="img-fluid slider-img float-left mr-4 imgcv img-responsive" :src="siteUrl + featured.project_image" alt="">
+							<img class="img-fluid slider-img float-left mr-4 imgcv img-responsive" :src="featured.image" alt="">
 						</div>
 						<div class="col-md-8">
-							<h1 class="slider-head text-left">	{{featured.project_title}}</h1>
-							<span v-html="featured.project_description"></span>
-							<button type="button" class="btn btn-trans">Read More</button>
+							<h1 class="slider-head text-left">	{{featured.title}}</h1>
+							<span v-html="featured.description"></span>
+							<!-- <button type="button" class="btn btn-trans">Read More</button> -->
 						</div>
 					</div>
 				</div>
@@ -113,16 +115,18 @@
 		<div class="row no-gutters">
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 hover-grid" v-for="actors in featuredActors" >
 				<div class="hovereffect">
-					<div class="overlay bggdd" :style="{'background': 'linear-gradient(rgba(63, 0, 72, 0.4),rgba(63, 0, 72, 0.4)), url('+ siteUrl + actors.user_image + ')'}">
-						<h2 class="text-trans-none"> 
-							{{actors.user_firstname}} {{actors.user_lastname}}
-							<br>
-						</h2>
-						<a class="info text-trans-none">
-							<small>{{actors.user_description}}
-							</small>
-						</a>
-					</div>
+					<router-link v-bind:to="'/Featured/'+actors.user_id">
+						<div class="overlay bggdd" :style="{'background': 'linear-gradient(rgba(63, 0, 72, 0.4),rgba(63, 0, 72, 0.4)), url('+ siteUrl + actors.user_image + ')'}">
+							<h2 class="text-trans-none"> 
+								{{actors.user_firstname}} {{actors.user_lastname}}
+								<br>
+							</h2>
+							<a class="info text-trans-none">
+								<small>{{actors.user_description}}
+								</small>
+							</a>
+						</div>
+					</router-link>
 				</div>
 			</div>	
 		</div>
@@ -133,7 +137,8 @@
 		<div class="container p-0">
 			<div class="row">
 				<div class="col-lg-4 wow slideInLeft d-none d-sm-block d-sm-none d-md-block text-right" data-wow-duration="2s" data-wow-offset="10">
-					<img src="../../assets/images/board3.png" style="margin-top: 37px;" class="img-fluid">
+					<img src="../../assets/images/device.png" style="    margin-top: 37px;
+    width: 200px;" class="img-fluid">
 				</div>
 				<div class="col-lg-8">
 					<div class="wrd r-wrd" style="padding: 10px 80px 80px 0;">
@@ -142,7 +147,7 @@
 						<ul>
 							<li v-for="listFeat in listfeats">
 								<p style="margin-bottom: 7px; font-size: 18px;">
-									<b>{{listFeat}}</b>
+									<b>{{listFeat.content}}</b>
 								</p>
 							</li>
 						</ul>
@@ -160,27 +165,31 @@
 
 			<div class="row no-gutters text-center">
 				<div class="col-sm-4 col1 r-color-grid">
-					<label class="cbox wow fadeIn" data-wow-duration="2s" data-wow-offset="10">
+					<router-link class="text-white" v-bind:to="'/register'">
+						<label class="cbox wow fadeIn" data-wow-duration="2s" data-wow-offset="10">
 						<i class="fa fa-4x fa-laptop"></i>
-					</label>
-					<h3>Create Your Profile</h3>
-					<p class="mb-0">Create your account in minutes and update your profile.</p>
-
+						</label>
+						<h3>Create Your Profile</h3>
+						<p class="mb-0">Create your account in minutes and update your profile.</p>
+					</router-link>
 				</div>
 				<div class="col-sm-4 col2 r-color-grid">
-					<label class="cbox wow fadeIn" data-wow-duration="3s" data-wow-offset="10">
-						<i class="fa fa-4x fa-users"></i>
-					</label>
-					<h3>Get Countless Casting Calls</h3>
-					<p class="mb-0">Upload your reels and resume and start getting casting calls.</p>
-
+					<router-link class="text-white" v-bind:to="'/register'">
+						<label class="cbox wow fadeIn" data-wow-duration="3s" data-wow-offset="10">
+							<i class="fa fa-4x fa-users"></i>
+						</label>
+						<h3>Get Countless Casting Calls</h3>
+						<p class="mb-0">Upload your reels and resume and start getting casting calls.</p>
+					</router-link>
 				</div>
 				<div class="col-sm-4 col3 r-color-grid">
-					<label class="cbox wow fadeIn" data-wow-duration="4s" data-wow-offset="10">
-						<i class="fa fa-4x fa-list-alt"></i>
-					</label>
-					<h3>Discover & Hire Talents</h3>
-					<p class="mb-0">View actors headshots and resume. Make your selection process easy.</p>
+					<router-link class="text-white" v-bind:to="'/register'">
+						<label class="cbox wow fadeIn" data-wow-duration="4s" data-wow-offset="10">
+							<i class="fa fa-4x fa-list-alt"></i>
+						</label>
+						<h3>Discover & Hire Talents</h3>
+						<p class="mb-0">View actors headshots and resume. Make your selection process easy.</p>
+					</router-link>
 
 				</div>
 			</div>
@@ -192,7 +201,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto text-white text-left">
-					<h1 class="slider-head text-left">What is Casting all about?</h1>
+					<h1 class="slider-head text-left">What is CAST.I.NG all about?</h1>
 					<p>
 						<a class="text-white" href="https://cast.i.ng">www.cast.i.ng</a> is Nigeria’s Premium online end-to-end audition and casting audition platform that answers to the cry of actors and casting directors alike. Born out of the need to replace the crazy audition process that we have in Nigeria today.  We also boast in the ability of our team to represent you as agents or managers. 
 					</p>
@@ -251,52 +260,44 @@ import axios from 'axios';
 // import homeService from '../../services/homeService'
 
 import Loader from '../template/loader';
-import Styles from '../template/styles';
 
 export default {
 	name: 'home',
 	props: ['message'],
 	data() {
 		return {
+			title: 'Home',
+      		describ: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.',
 			isActive: true,
 			loading: true,
 			homeData: {},
 			featured: {},
+			homeProject: {},
 			featuredTesti: {},
 			featuredProjects: {},
 			featuredActors: {},
 			sliderData: {},
 			chairSlider: {},
-			listfeats: ['Unlimited Headshots',
-						'Unlimited Video reels',
-						'Unlimited Audio reels',
-						'Apply for auditions remotely by one click',
-						'Share Online resume/portfolio on your social media',
-						'Send Online resume as PDF (e-Size Cards)',
-						'Email/WhatsApp reminders of your Audition',
-						'Talent Representations - Agency/management', 
-						'Access to monthly Actors workshop',
-						'Access to Quarterly Actors Hangout' ],
+			listfeats: [],
 			siteUrl: "https://api.cast.i.ng/",
 			videoUrl: "https://www.youtube.com/embed/"
 		};
 	},
 	components: {
 		loader: Loader,
-		styles: Styles,
 	},
 	mounted(){
 		this.loadingTxt = true
 		// location.reload(true);
-		if (localStorage.getItem('reloaded')) {
-	        // The page was just reloaded. Clear the value from local storage
-	        // so that it will reload the next time this page is visited.
-	        localStorage.removeItem('reloaded');
-	    } else {
-	        // Set a flag so that we know not to reload the page twice.
-	        localStorage.setItem('reloaded', '1');
-	        location.reload(true);
-	    }
+		// if (localStorage.getItem('reloaded')) {
+	 //        // The page was just reloaded. Clear the value from local storage
+	 //        // so that it will reload the next time this page is visited.
+	 //        localStorage.removeItem('reloaded');
+	 //    } else {
+	 //        // Set a flag so that we know not to reload the page twice.
+	 //        localStorage.setItem('reloaded', '1');
+	 //        location.reload(true);
+	 //    }
 
 		this.loading = true;
 		axios.get('https://jsonplaceholder.typicode.com/todos/1').then(
@@ -338,22 +339,62 @@ export default {
 
         axios({ method: "GET", "url": "https://api.cast.i.ng", config }).then(result => {
 			this.loading = false;
-            this.featuredProjects = result.data.featured_projects;
+            // this.featuredProjects = result.data.featured_projects;
             this.featuredActors = result.data.featured_actors
             this.featuredTesti = result.data.featured_testimonial
         }, error => {
 			this.loading = false;
             console.error(error);
         });
-	}	
+
+        axios({ method: "GET", "url": "https://api.cast.i.ng/gethomeproject", config }).then(result => {
+			this.loading = false;
+            this.homeProject = result.data;
+        }, error => {
+			this.loading = false;
+            console.error(error);
+        });
+
+        axios({ method: "GET", "url": "https://api.cast.i.ng/getfeature", config }).then(result => {
+			this.loading = false;
+            this.listfeats = result.data.list;
+        }, error => {
+			this.loading = false;
+            console.error(error);
+        });
+
+        
+	},
+	head: {
+	  title: {
+	    inner: 'Home'
+	  },
+	  // Meta tags
+	  meta: [
+	    { name: 'application-name', content: 'Casting' },
+	    { name: 'description', content: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.', id: 'desc' }, // id to replace intead of create element
+	    // ...
+	    // Twitter
+	    { name: 'twitter:title', content: 'Casting' },
+	    // with shorthand
+	    { n: 'twitter:description', c: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.'},
+	    // ...
+	    // Facebook / Open Graph
+	    { property: 'fb:app_id', content: '123456789' },
+	    { property: 'og:title', content: 'Casting' },
+	    // with shorthand
+	    { p: 'og:image', c: 'https://cast.i.ng/static/img/icons/favicon-32x32.png' },
+	    // ...
+	  ]
+	}
 };
 </script>
 
 <style>
 .clippath {
 	background-size: cover;
-	-webkit-clip-path: polygon(100% 0, 100% 69%, 28% 100%, 0 79%, 0 0);
-	clip-path: polygon(100% 0, 100% 69%, 28% 100%, 0 79%, 0 0);
+	-webkit-clip-path: polygon(100% 0, 100% 83%, 29% 100%, 0 83%, 0 0);
+	clip-path: polygon(100% 0, 100% 83%, 29% 100%, 0 83%, 0 0);
 }
 .bgg {
 	background-color: #e7077d;
@@ -403,5 +444,8 @@ export default {
 }
 .pink-indicator li{
 	    background-color: white!important;
+}
+.home-textt{
+	text-align: right;
 }
 </style>

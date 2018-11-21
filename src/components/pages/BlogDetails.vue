@@ -1,8 +1,7 @@
 <template>
     <div>
-      <styles/>
       <loader v-if="loading"/>
-        <header class="sub-ban1 clippath" :style="{'background': 'linear-gradient(180deg, #000c, #00000080), url('+ require ('../../assets/images/ban1.jpg') + ')'}">
+        <header class="sub-ban1 clippath" :style="{'background': 'linear-gradient(180deg, #000c, #00000080), url('+ require ('../../assets/images/background.jpg') + ')'}">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto text-white pt-c2">
@@ -26,7 +25,7 @@
 
             <h3 class="col-p slider-head">{{blogDetailss.blog_title}}</h3>
             <label>
-              <i class="fa fa-calendar"></i> {{blogDetailss.blog_created | moment().format("DD MMM YYYY")}} 
+              <i class="fa fa-calendar"></i> {{blogDetailss.blog_created}} 
             </label>
             <img :src="blogDetailss.blog_image" class="rounded img-fluid" />
             <div style="margin-top: 20px!important;" class="mt-2" v-html="blogDetailss.blog_content"></div>
@@ -68,19 +67,19 @@
 <script>
 import axios from 'axios';
 import Loader from '../template/loader';
-import Styles from '../template/styles';
 export default {
 	name: 'blogdetails',
 	data() {
 		return {
 			loading: true,
+      hhh: 'Hello H',
       blogDetailss: '',
-      popularList: ''
+      popularList: '',
+      blogTitle: '',
 		};
 	},
 	components: {
 		loader: Loader,
-		styles: Styles,
 	},
 	mounted() {
 		this.loading = true;
@@ -113,6 +112,9 @@ export default {
           this.loading = false;
           this.blogDetailss = result.data;
           this.popularList = result.data.popular_list;
+          console.log(this.blogDetailss.blog_title);
+          this.blogTitle = this.blogDetailss.blog_title;
+          return this.blogTitle;
       },
       error => {
           this.loading = false;
@@ -121,6 +123,28 @@ export default {
       }
   );
 	},
+  head: {
+    title: {
+      inner: 'Blog'
+    },
+    // Meta tags
+    meta: [
+      { name: 'application-name', content: 'Casting' },
+      { name: 'description', content: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.', id: 'desc' }, // id to replace intead of create element
+      // ...
+      // Twitter
+      { name: 'twitter:title', content: 'Casting' },
+      // with shorthand
+      { n: 'twitter:description', c: 'Nigeria’s Number 1 premium casting website, for real actors by real casting directors. Powered by technology, with the aim of ease, efficiency and affordability.'},
+      // ...
+      // Facebook / Open Graph
+      { property: 'fb:app_id', content: '123456789' },
+      { property: 'og:title', content: 'Casting' },
+      // with shorthand
+      { p: 'og:image', c: 'https://cast.i.ng/static/img/icons/favicon-32x32.png' },
+      // ...
+    ]
+  }
 };
 </script>
 

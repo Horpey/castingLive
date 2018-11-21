@@ -203,4 +203,10 @@
     .sec-1 {
         padding: 0px 0 10px 0!important;
     }
+    .home-textt{
+        text-align: center!important;
+    }
+    .clippath{
+        background: black!important;
+    }
 }

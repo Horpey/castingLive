@@ -1,6 +1,6 @@
 <template>
     <div>
-        <footer class="py-3 home-footer">
+        <footer class="py-3">
     <div class="container">
         <br>
 
@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a :href="facebook">
+                        <a :href="facebook" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a :href="linkedIn">
+                        <a :href="linkedIn" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a :href="instagram">
+                        <a :href="instagram" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-instagram ins fa-stack-1x fa-inverse"></i>

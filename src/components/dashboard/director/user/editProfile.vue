@@ -213,7 +213,9 @@
                     this.$router.go(0);
 
                 }, error => {
+                    this.formLoading = false;
                     // () => this.registerFailed()
+                    this.error = 'Failed to Edit Profile';
                     console.error(error);
                 });
             },
